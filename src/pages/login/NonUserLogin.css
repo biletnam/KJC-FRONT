@@ -1,0 +1,20 @@
+.non-user-login-parent{
+    height: 100%;
+    text-align: center;
+}
+.non-user-login-parent .formDiv{
+    margin-top: 40px;
+    width: 60%;
+    display: inline-block;
+}
+.non-user-login-parent .col-form-label{
+    font-weight: 900;
+}
+.buttonDiv .loginButton {
+    border: none;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-weight:900;
+    border-radius: 3px;
+    background-color: #fa5252;
+}

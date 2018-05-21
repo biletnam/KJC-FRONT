@@ -1,0 +1,75 @@
+.page-title {
+    width: 100%;
+    background: #fa5252;
+    padding: 10px;
+    text-align: left;
+    font-weight: 900;
+    font-size: 20px;
+    color: #f8f9fa;
+}
+.register-parent-div {
+    width: 100%;
+    text-align: center;
+}
+.register-form-div {
+    width: 800px;
+    display: inline-block;
+    margin-top:10%;
+    background-color: #ffffff;
+}
+
+.register-form-div .col-form-label{
+    font-weight: 900;
+}
+.registerInformation {
+    position:relative;
+}
+.registerInformation p {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #fa5252;
+    display: block;
+    position:relative;
+    z-index: 99;
+}
+.registerInformation::before{
+    content: ' ';
+    border: 5px solid #fff9db;
+    position: absolute;
+    width: 100%;
+    top: 25px;
+    left: 0px;
+    z-index: 0;
+}
+.register-form-div .form {
+    padding: 25px;
+}
+.register-form-div .col-id-check-button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-weight: 900;
+    color: #f8f9fa;
+    background-color: #fa5252;
+}
+.form-line {
+    text-align: center;
+    margin-top: 20px;
+
+}
+.form-line div {
+    display: inline-block;
+    content: ' ';
+    width: 25%;
+    border: 3px solid #fcc419;
+}
+@media (max-width: 850px) {
+    .register-form-div {
+        width: 100%;
+        display: inline-block;
+        margin-top:10%;
+        background-color: #ffffff;
+    }
+}

@@ -1,0 +1,20 @@
+.movieParentDiv {
+    width: 1000px;
+    text-align: left;
+    display: inline-block;
+}
+.page-title {
+    width: 100%;
+    background: #fa5252;
+    padding: 10px;
+    text-align: left;
+    font-weight: 900;
+    font-size: 20px;
+    color: #f8f9fa;
+}
+@media(max-width: 1000px) {
+    .movieParentDiv {
+        width: 100%;
+        text-align: center;
+    }
+}

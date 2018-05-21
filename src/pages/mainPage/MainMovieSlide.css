@@ -1,0 +1,48 @@
+.movieImage {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    z-index: 0;
+}
+.slick-dots {
+    bottom: 20px;
+}
+.slick-dots button:before {
+    color: #ffffff !important;
+}
+.slick-track {
+    height: 500px;
+}
+.movieSlideContent {
+    position:relative;
+    display:block;
+}
+.movieSlideContent .movieInfo {
+    position: absolute;
+    z-index: 9999;
+    left: 10%;
+    top: 50%;
+}
+.movieSlideContent .movieInfo p:nth-child(1){
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0 auto;
+}
+.movieSlideContent .movieInfo p:nth-child(2){
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 0 auto;
+}
+.movieSlideContent .movieInfo .movieInfoLine{
+    width: 100%;
+    margin-top: 0.5rem;
+    border-bottom: 1px solid white;
+}
+.movieSlideContent .movieInfo p:nth-child(4){
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 900;
+    margin: 0 auto;
+}

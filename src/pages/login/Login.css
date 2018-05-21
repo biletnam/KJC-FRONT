@@ -1,0 +1,38 @@
+.page-title {
+    width: 100%;
+    background: #fa5252;
+    padding: 10px;
+    text-align: left;
+    font-weight: 900;
+    font-size: 20px;
+    color: #f8f9fa;
+}
+@media (max-width: 1000px){
+    .loginTab{
+        width: 100% !important;
+    }
+}
+.loginTab {
+    width:1000px;
+    height: 500px;
+    background-color: #ffffff;
+    display: inline-block;
+    border: 1px solid #bababa;
+    margin-top: 10%;
+}
+.page-body {
+    width: 100%;
+    text-align: center;
+}
+.tabTitle {
+    font-weight: 900;
+}
+.active.nav-link {
+    background-color: #bababa;
+}
+.loginTab .tab-content{
+    height: 100%;
+}
+.loginTab .tab-pane{
+    height: 100%;
+}

@@ -1,0 +1,53 @@
+.user-login-parent-div {
+    width: 50%;
+    display: inline-block;
+    margin-top: 10%;
+}
+.user-login-body-div {
+    text-align: left !important;
+}
+.user-login-form-div {
+    position: relative;
+}
+.user-login-form-div .buttonDiv{
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    /* text-align: center; */
+    /* flex-flow: column-reverse; */
+    justify-content: center;
+}
+.user-login-form-div .buttonDiv .loginButton {
+    padding: 10px 20px;
+    margin-right:10px;
+    margin-left:20px;
+    color: #ffffff;
+    border: none;
+    background-color: #fa5252;
+    font-weight: 900;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.user-login-form-div .buttonDiv .registerButton {
+    padding: 10px 40px;
+    color: #ffffff;
+    border: none;
+    background-color: #1864ab;
+    font-weight: 900;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.form {
+    width: 100%;
+}
+.user-login-form-div .col-form-label{
+    font-weight: 900;
+}
+@media(max-width: 800px) {
+    .user-login-parent-div {
+        width: 80%;
+        margin-top: 10%;
+    }
+}
