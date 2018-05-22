@@ -31,7 +31,7 @@ class MainPage extends Component {
             <div className="mainMenuBar">
                 <MenuNavBar onToggle = {this.alarmHeaderSize}/>
             </div>
-            <div className = "mainBody">
+            <div className = "mainBody" style={{height: `calc(100% - ${header})`}}>
                 <Switch>
                      <Route path = '/reserve' component = {Reserve}/>
                      <Route path ='/movies' component = {Movies}/>

@@ -28,7 +28,7 @@ class DirectorMenuNavBar extends Component {
         return (
             <div className="navBarDiv">
                 <Navbar color="#ffffff" light expand="md">
-                    <NavbarBrand href="/"><span className="KJC">KJC-CINEMA</span></NavbarBrand>
+                    <NavbarBrand href="/director"><span className="KJC">KJC-CINEMA</span></NavbarBrand>
                   <NavbarToggler onClick={this.toggle}/>
                   <Collapse isOpen={isOpen} navbar>
                     <Nav navbar>
@@ -48,13 +48,6 @@ class DirectorMenuNavBar extends Component {
                         <p className="nav-p">
                             상영일정 관리
                         </p>
-                      </NavItem>
-                      <NavItem>
-                            <Link to={'/login'} style={{textDecoration: 'none', color: 'black'}}>
-                              <p className="nav-p">
-                                  로그인
-                              </p>
-                            </Link>
                       </NavItem>
                     </Nav>
                   </Collapse>

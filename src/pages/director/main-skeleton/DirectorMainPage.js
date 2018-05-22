@@ -6,6 +6,7 @@ import {Home, Reserve} from "pages";
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as windowSizeAction from 'reducers/windowSize';
+import ManageMovie from "../manageMovie/ManageMovie";
 class DirectorMainPage extends Component {
     alarmHeaderSize = () => {
         const { WindowSizeActions, isOpen}  = this.props;
@@ -23,11 +24,12 @@ class DirectorMainPage extends Component {
     render() {
         console.log(this.props.header);
         const { header } = this.props;
-        return (<div className = "mainParentDiv">
+        return (<div className = "directorMainParentDiv">
             <div className="mainMenuBar">
                 <DirectorMenuNavBar onToggle = {this.alarmHeaderSize}/>
             </div>
-            <div className = "mainBody">
+            <div className = "mainBody" style={{height: `calc(100% - ${header})`}}>
+                <Route path='/director/manageMovie' component={ManageMovie}></Route>
             </div>
         </div>);
     }

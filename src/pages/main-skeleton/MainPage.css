@@ -1,7 +1,7 @@
 .mainParentDiv {
     display: block;
 }
-.mainMenuBar {
+.mainParentDiv .mainMenuBar {
     width: 100%;
     text-align: center;
     border-bottom: 1px solid #dadada;
@@ -10,16 +10,15 @@
     z-index: 999999;
     background: #ffffff;
 }
-.mainBody {
+.mainParentDiv .mainBody {
     height: 100vh;
-    background-color: #f8f9fa;
     text-align: center;
 }
-.commonMenuBar {
+.mainParentDiv .commonMenuBar {
     width: 100%;
     text-align: right;
 }
-.commonMenuBar >div {
+.mainParentDiv .commonMenuBar >div {
     padding: 5px;
     font-weight: 900;
 }

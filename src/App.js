@@ -7,8 +7,10 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Route path='/director' component = {DirectorMainPage}/>
-                <Route path='/' component = {MainPage}/>
+                <Switch>
+                    <Route path='/director' component = {DirectorMainPage}/>
+                    <Route path='/' component = {MainPage}/>
+                </Switch>
             </div>
         )
     }
