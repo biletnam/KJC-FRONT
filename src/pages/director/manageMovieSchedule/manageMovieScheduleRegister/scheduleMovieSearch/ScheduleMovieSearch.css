@@ -1,0 +1,28 @@
+.scheduleSearchMovieParentDiv {
+    padding: 20px;
+    background-color: #fafafa;
+}
+.scheduleSearchMovieParentDiv .searchMovieItem{
+    display: flex;
+    padding: 10px;
+    background: #ffffff;
+    margin: 15px;
+}
+.scheduleSearchMovieParentDiv .searchMovieItem .searchMovieItemImage {
+    flex: 1;
+}
+.scheduleSearchMovieParentDiv .searchMovieItem .searchMovieItemImage img{
+    width:100px;
+    height: 100px;
+}
+.scheduleSearchMovieParentDiv .searchMovieItem .searchMovieItemName {
+    flex: 3;
+    font-weight: 900;
+    font-size: 20px;
+}
+.scheduleSearchMovieParentDiv input {
+    width: 80%;
+    border-radius: 3px;
+    border: 1px solid #bababa;
+    padding: 5px;
+}
