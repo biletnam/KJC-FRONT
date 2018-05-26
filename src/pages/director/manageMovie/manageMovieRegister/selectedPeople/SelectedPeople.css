@@ -1,0 +1,21 @@
+.selectedPersonDiv {
+    width: 50%;
+    display: inline-block;
+}
+.selectedPersonItemDiv {
+    display: flex;
+}
+.selectedPersonItemDiv div:nth-child(1) {
+    flex:1;
+    font-weight: 900;
+}
+.selectedPersonItemDiv div:nth-child(2) {
+    flex: 1;
+}
+.selectedPersonItemDiv div:nth-child(3){
+    padding: 0 10px;
+    background-color: #ffffff;
+    font-weight: 900;
+    cursor: pointer;
+    border-radius: 5px;
+}

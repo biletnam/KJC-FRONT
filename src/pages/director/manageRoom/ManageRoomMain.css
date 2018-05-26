@@ -1,8 +1,9 @@
-.manageMovieParentDiv {
+.manageRoomParentDiv {
     height: 100%;
     position: relative;
+    background-color: #fafafa;
 }
-.manageMovieParentDiv ul {
+.manageRoomParentDiv ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -10,11 +11,11 @@
     background-color: #333;
 }
 
-.manageMovieParentDiv li {
+.manageRoomParentDiv li {
     float: left;
 }
 
-.manageMovieParentDiv li a {
+.manageRoomParentDiv li a {
     display: block;
     color: white;
     text-align: center;
@@ -23,8 +24,8 @@
 }
 
 /* Change the link color to #111 (black) on hover */
-.manageMovieParentDiv li a:hover {
+.manageRoomParentDiv li a:hover {
     background-color: #111;
 }
-.manageMovieParentDiv .manageMovieBody {
+.manageRoomParentDiv .manageRoomBody {
 }

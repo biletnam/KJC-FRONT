@@ -1,0 +1,22 @@
+.searchPeopleParentDiv {
+    padding: 20px;
+    background-color: #fafafa;
+}
+.searchPeopleParentDiv .searchPeopleItem{
+    display: flex;
+    padding: 10px;
+    background: #ffffff;
+    margin: 15px;
+}
+.searchPeopleParentDiv .searchPeopleItem .searchPeopleItemImage {
+    flex: 1;
+}
+.searchPeopleParentDiv .searchPeopleItem .searchPeopleItemName {
+    flex: 3;
+}
+.searchPeopleParentDiv input {
+    width: 80%;
+    border-radius: 3px;
+    border: 1px solid #bababa;
+    padding: 5px;
+}

@@ -1,8 +1,8 @@
-.manageMovieParentDiv {
+.manageGenreParent {
     height: 100%;
     position: relative;
 }
-.manageMovieParentDiv ul {
+.manageGenreParent ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -10,11 +10,11 @@
     background-color: #333;
 }
 
-.manageMovieParentDiv li {
+.manageGenreParent li {
     float: left;
 }
 
-.manageMovieParentDiv li a {
+.manageGenreParent li a {
     display: block;
     color: white;
     text-align: center;
@@ -23,8 +23,8 @@
 }
 
 /* Change the link color to #111 (black) on hover */
-.manageMovieParentDiv li a:hover {
+.manageGenreParent li a:hover {
     background-color: #111;
 }
-.manageMovieParentDiv .manageMovieBody {
+.manageGenreParent .manageGenreBody {
 }

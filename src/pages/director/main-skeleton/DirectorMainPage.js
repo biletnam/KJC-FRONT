@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import './DirectorMainPage.css';
 import DirectorMenuNavBar from "./DirectorMenuNavBar";
-import { Route, Switch, withRouter} from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect} from 'react-router-dom';
 import {Home, Reserve} from "pages";
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as windowSizeAction from 'reducers/windowSize';
 import ManageMovie from "../manageMovie/ManageMovie";
+import ManagePeopleMain from "../managePeople/ManagePeopleMain";
+import ManageGenreMain from "../manageGenre/ManageGenreMain";
+import ManageRoomMain from "../manageRoom/ManageRoomMain";
+import ManageMovieScheduleMain from "../manageMovieSchedule/ManageMovieScheduleMain";
 class DirectorMainPage extends Component {
     alarmHeaderSize = () => {
         const { WindowSizeActions, isOpen}  = this.props;
@@ -23,13 +27,17 @@ class DirectorMainPage extends Component {
     }
     render() {
         console.log(this.props.header);
-        const { header } = this.props;
+        const { header, match } = this.props;
         return (<div className = "directorMainParentDiv">
             <div className="mainMenuBar">
                 <DirectorMenuNavBar onToggle = {this.alarmHeaderSize}/>
             </div>
-            <div className = "mainBody" style={{height: `calc(100% - ${header})`}}>
-                <Route path='/director/manageMovie' component={ManageMovie}></Route>
+            <div className = "mainBody" style={{position: 'absolute', top: header, width: '100%', minHeight: '100%'}}>
+                <Route path={match.path + '/managePeople'} component={ManagePeopleMain}></Route>
+                <Route path={match.path + '/manageMovie'} component={ManageMovie}></Route>
+                <Route path={match.path + '/manageRoom'} component={ManageRoomMain}></Route>
+                <Route path={match.path + '/manageGenre'} component={ManageGenreMain}></Route>
+                <Route path={match.path + '/manageMovieSchedule'} component={ManageMovieScheduleMain}></Route>
             </div>
         </div>);
     }

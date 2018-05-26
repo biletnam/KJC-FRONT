@@ -1,0 +1,10 @@
+.managePeopleListDiv {
+    width: 80%;
+    display: inline-block;
+    margin-top: 30px;
+}
+@media(max-width: 1000px) {
+    .managePeopleListDiv{
+        width: 100%;
+    }
+}

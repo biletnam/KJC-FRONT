@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -24,7 +24,7 @@ class DirectorMenuNavBar extends Component {
         WindowSizeActions.menuToggle();
     }
     render() {
-        const { isOpen } = this.props;
+        const { isOpen, match} = this.props;
         return (
             <div className="navBarDiv">
                 <Navbar color="#ffffff" light expand="md">
@@ -33,21 +33,39 @@ class DirectorMenuNavBar extends Component {
                   <Collapse isOpen={isOpen} navbar>
                     <Nav navbar>
                       <NavItem>
-                            <Link to={'/director/manageMovie'} style={{textDecoration: 'none', color: 'black'}}>
+                            <Link to={match.url + '/manageMovie'} style={{textDecoration: 'none', color: 'black'}}>
                               <p className="nav-p first">
                                   영화 관리
                               </p>
                             </Link>
                       </NavItem>
                       <NavItem>
-                        <p className="nav-p">
-                            상영관 관리
-                        </p>
+                        <Link to={match.url + '/manageRoom'} style={{textDecoration: 'none', color: 'black'}}>
+                          <p className="nav-p">
+                              상영관 관리
+                          </p>
+                        </Link>
                       </NavItem>
                       <NavItem>
-                        <p className="nav-p">
-                            상영일정 관리
-                        </p>
+                        <Link to={match.url + '/manageMovieSchedule'} style={{textDecoration: 'none', color: 'black'}}>
+                          <p className="nav-p">
+                              상영 일정 관리
+                          </p>
+                        </Link>
+                      </NavItem>
+                       <NavItem>
+                            <Link to={match.url + '/managePeople'} style={{textDecoration: 'none', color: 'black'}}>
+                              <p className="nav-p">
+                                  인물 관리
+                              </p>
+                            </Link>
+                      </NavItem>
+                      <NavItem>
+                            <Link to={match.url + '/manageGenre'} style={{textDecoration: 'none', color: 'black'}}>
+                              <p className="nav-p">
+                                  장르 관리
+                              </p>
+                            </Link>
                       </NavItem>
                     </Nav>
                   </Collapse>
@@ -57,6 +75,6 @@ class DirectorMenuNavBar extends Component {
     }
 
 }
-export default connect((state) => ({header: state.windowSize.header, isOpen: state.windowSize.isOpen}), (dispatch) => ({
+export default withRouter(connect((state) => ({header: state.windowSize.header, isOpen: state.windowSize.isOpen}), (dispatch) => ({
     WindowSizeActions : bindActionCreators(windowSizeAction,dispatch)
-}))(DirectorMenuNavBar)
+}))(DirectorMenuNavBar))

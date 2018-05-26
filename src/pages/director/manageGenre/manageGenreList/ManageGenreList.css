@@ -1,0 +1,10 @@
+.manageGenreListDiv {
+    width: 50%;
+    display: inline-block;
+    margin-top: 30px;
+}
+@media(max-width: 1000px) {
+    .manageGenreListDiv{
+        width: 100%;
+    }
+}

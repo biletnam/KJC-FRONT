@@ -1,0 +1,35 @@
+.managePeopleRegisterParentDiv {
+    margin-top: 30px;
+    width: 1000px;
+    background-color: #ffffff;
+    display: inline-block;
+    border-radius: 10px;
+}
+.managePeopleRegisterParentDiv .registerTitle {
+    padding: 10px;
+    background-color: #fa5252;
+    font-weight: 900;
+    font-size: 20px;
+    color: #ffffff;
+}
+.managePeopleRegisterParentDiv .registerBody {
+    padding: 20px;
+}
+.managePeopleRegisterParentDiv .registerBody .col-form-label{
+    font-weight: 900;
+}
+.managePeopleRegisterParentDiv .registerBody .registerButton button{
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: 20px;
+}
+.managePeopleRegisterParentDiv .error {
+    color: red !important;
+}
+@media (max-width: 1000px) {
+    .managePeopleRegisterParentDiv {
+        width: 100%;
+    }
+}
