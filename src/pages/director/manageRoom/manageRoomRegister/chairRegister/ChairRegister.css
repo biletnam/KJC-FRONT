@@ -1,0 +1,21 @@
+.ChairRegisterAddButton {
+    text-align: left;
+}
+.ChairRegisterAddButton span {
+    font-size: 13px;
+}
+.ChairRegisterAddButton button {
+    display: inline-block;
+}
+.ChairRegisterParentDiv .ChairRegisterList >div{
+    display:flex;
+    flex-wrap: wrap;
+}
+.ChairRowInputList {
+    margin:1px;
+}
+.ChairRegisterParentDiv input[type="number"]::-webkit-outer-spin-button,
+.ChairRegisterParentDiv input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

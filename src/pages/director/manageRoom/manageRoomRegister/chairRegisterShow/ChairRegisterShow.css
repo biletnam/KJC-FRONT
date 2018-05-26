@@ -1,0 +1,20 @@
+.chairRegisterParentDiv .chairRow {
+    display: flex;
+}
+.chairRegisterParentDiv .chairRegisterScreenDiv {
+    text-align: center;
+}
+.chairRegisterParentDiv .chairRegisterScreen {
+    padding: 2px 15px;
+    display: inline-block;
+    background-color: #343a40;
+    border-radius: 5px;
+    color: #f8f9fa;
+    font-weight: 700;
+}
+.chairRegisterParentDiv .chairRow .chair {
+    margin: 2px;
+    width: 10%;
+    background-color: #bababa;
+    border-radius: 5px;
+}
