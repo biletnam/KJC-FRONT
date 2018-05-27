@@ -1,22 +1,22 @@
-.navbar{
+.userPageNav .navbar{
     padding: 0px !important;
 }
-.navBarDiv{
+.navBarDiv.userPageNav{
     width: 50%;
     display: inline-block;
 }
 @media(max-width: 765px) {
-    .navbar {
+    .userPageNav .navbar {
         text-align: center;
         display: block;
         margin: 10px;
     }
-    .navbar-brand {
+    .userPageNav .navbar-brand {
     }
-    .navBarDiv {
+    .userPageNav .navBarDiv {
         width: 100%;
     }
-    .nav-p {
+    .userPageNav .nav-p {
         padding: 0.5rem 1rem;
         margin: 0 auto;
         font-weight: 800;
@@ -24,7 +24,7 @@
     }
 }
 @media(min-width: 765px) {
-    .nav-p {
+    .userPageNav .nav-p {
         margin: 0 auto;
         width: 100px;
         height: 50px;
@@ -32,12 +32,12 @@
         font-weight: 800;
         border-right: 1px solid #dadada;
     }
-    .nav-p.first {
+    .userPageNav .nav-p.first {
         margin: 0 0 0 20px;
         border-left: 1px solid #dadada;
     }
 }
-.KJC {
+.userPageNav .KJC {
     font-size: 20px;
     color: red;
     font-weight: 900;

@@ -1,0 +1,85 @@
+.manageRoomChairParentDiv {
+    width: 1000px;
+    display: inline-block;
+    margin-top: 30px;
+}
+.manageRoomChairParentDiv .manageRoomChairTitle {
+    padding: 10px;
+    background-color: #fa5252;
+    font-weight: 900;
+    font-size: 20px;
+    color:#fafafa;
+}
+.manageChairFindRoom {
+    display: block;
+    text-align: center;
+}
+.manageChairFindRoom .findRoomParentDiv{
+    display: flex !important;
+}
+
+
+.manageRoomChairBody {
+    padding:20px;
+    background-color: #ffffff;
+}
+
+.manageRoomChairParentDiv .showChairScreen{
+    width: fit-content;
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #343a40;
+    color: #ffffff;
+    font-weight: 900;
+    border-radius: 5px;
+}
+.manageRoomChairParentDiv  .showChairRow {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.manageRoomChairParentDiv .showChairColumn {
+    flex: 1;
+    margin: 5px;
+    text-align: center;
+    background-color: gainsboro;
+    font-weight: 700;
+    cursor: pointer;
+}
+.manageRoomChairParentDiv .selectChairColumn {
+    background-color: #fa5252 !important;
+}
+.manageRoomChairParentDiv .selectedChairCount {
+    display: inline-block;
+    padding: 10px;
+    font-weight: 900;
+}
+.manageRoomChairParentDiv .showChairRowMark {
+    background-color: #343a40;
+    width: 50px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid #333333;
+    font-weight: 900;
+    color: white;
+}
+.manageRoomChairParentDiv .chairPriceSelectDiv {
+    margin-top: 20px;
+}
+.manageRoomChairParentDiv .chairPriceButton button {
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    width: 20%;
+    border-radius: 3px;
+    color: #ffffff;
+    background-color: #343a40;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1000px) {
+    .manageRoomChairParentDiv {
+        width: 100%;
+    }
+}

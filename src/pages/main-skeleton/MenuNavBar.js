@@ -26,7 +26,7 @@ class MenuNavBar extends Component {
     render() {
         const { isOpen } = this.props;
         return (
-            <div className="navBarDiv">
+            <div className="navBarDiv userPageNav">
                 <Navbar color="#ffffff" light expand="md">
                     <NavbarBrand href="/"><span className="KJC">KJC-CINEMA</span></NavbarBrand>
                   <NavbarToggler onClick={this.toggle}/>

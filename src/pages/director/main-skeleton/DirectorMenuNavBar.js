@@ -26,7 +26,7 @@ class DirectorMenuNavBar extends Component {
     render() {
         const { isOpen, match} = this.props;
         return (
-            <div className="navBarDiv">
+            <div className="navBarDiv directorMenu">
                 <Navbar color="#ffffff" light expand="md">
                     <NavbarBrand href="/director"><span className="KJC">KJC-CINEMA</span></NavbarBrand>
                   <NavbarToggler onClick={this.toggle}/>
@@ -67,6 +67,13 @@ class DirectorMenuNavBar extends Component {
                               </p>
                             </Link>
                       </NavItem>
+                      <NavItem>
+                            <Link to={match.url + '/manageGenre'} style={{textDecoration: 'none', color: 'black'}}>
+                              <p className="nav-p">
+                                  가격 관리
+                              </p>
+                            </Link>
+                      </NavItem>  
                     </Nav>
                   </Collapse>
                 </Navbar>

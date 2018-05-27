@@ -3,6 +3,7 @@ import "./ManageMovieScheduleRegister.css";
 import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
 import ScheduleMovieSearch from "./scheduleMovieSearch/ScheduleMovieSearch";
+import FindRoom from "../../../common/findRoom/FindRoom";
 class ManageMovieScheduleRegister extends Component {
     emptyInputSetting = {
         sequence: 1,
@@ -10,7 +11,8 @@ class ManageMovieScheduleRegister extends Component {
         room: '',
         date: '',
         startTime: '08:00',
-        endTime: '09:30'
+        endTime: '09:30',
+        roomId: null
     }
     constructor(props){
         super(props);
@@ -51,6 +53,9 @@ class ManageMovieScheduleRegister extends Component {
             console.log(error);
         });
     }
+    onRoomSelect = (roomId) => {
+        this.setState({roomId: roomId}, () => {console.log(this.state)});
+    }
     render() {
         const { onInputChange, onSubmitButton }  = this;
         return (
@@ -82,7 +87,9 @@ class ManageMovieScheduleRegister extends Component {
                            <FormGroup row>
                               <Label for="id" sm={3}>상영관 선택</Label>
                                <div>
-                                   공사중
+                                   <Col sm={6}>
+                                       <FindRoom onRoomSelect={this.onRoomSelect} />
+                                   </Col>
                                </div>
                            </FormGroup>
                            <FormGroup row>

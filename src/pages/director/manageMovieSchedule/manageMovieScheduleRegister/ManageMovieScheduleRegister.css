@@ -45,6 +45,9 @@
     font-weight: 900;
     font-size: 20px;
 }
+.movieScheduleRegisterParentDiv .findRoomParentDiv {
+    display: flex;
+}
 @media (max-width: 1000px) {
     .movieScheduleRegisterParentDiv {
         width: 100%;

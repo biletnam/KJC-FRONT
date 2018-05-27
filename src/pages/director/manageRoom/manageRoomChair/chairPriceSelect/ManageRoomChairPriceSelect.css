@@ -1,0 +1,7 @@
+.manageRoomChairPriceDiv {
+    display: flex;
+}
+.manageRoomChairPriceDiv .priceTitle {
+    font-weight: 900;
+    margin-right: 10px;
+}
