@@ -11,7 +11,7 @@ class ManageGenreMain extends Component{
                 <div>
                     <ul>
                         <li><Link to={match.url}>장르 목록</Link></li>
-                        <li><Link to={match.url + '/register'}>장르    등록</Link></li>
+                        <li><Link to={match.url + '/register'}>장르 등록</Link></li>
                     </ul>
                 </div>
                 <div className={'manageGenreBody'}>

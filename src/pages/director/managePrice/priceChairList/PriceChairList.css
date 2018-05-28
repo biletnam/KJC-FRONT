@@ -1,0 +1,10 @@
+.priceChairListDiv {
+    width: 60%;
+    display: inline-block;
+    margin-top: 30px;
+}
+@media(max-width: 1000px) {
+    .priceChairListDiv{
+        width: 100%;
+    }
+}

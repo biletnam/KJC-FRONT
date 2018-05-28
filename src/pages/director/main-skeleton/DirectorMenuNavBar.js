@@ -68,12 +68,19 @@ class DirectorMenuNavBar extends Component {
                             </Link>
                       </NavItem>
                       <NavItem>
-                            <Link to={match.url + '/manageGenre'} style={{textDecoration: 'none', color: 'black'}}>
+                            <Link to={match.url + '/managePrice'} style={{textDecoration: 'none', color: 'black'}}>
                               <p className="nav-p">
                                   가격 관리
                               </p>
                             </Link>
-                      </NavItem>  
+                      </NavItem>
+                      <NavItem>
+                            <Link to={match.url + '/manageMember'} style={{textDecoration: 'none', color: 'black'}}>
+                              <p className="nav-p">
+                                  회원 관리
+                              </p>
+                            </Link>
+                      </NavItem>
                     </Nav>
                   </Collapse>
                 </Navbar>
