@@ -12,16 +12,24 @@
         margin: 10px;
     }
     .userPageNav .navbar-brand {
+        margin: 0;
     }
-    .userPageNav .navBarDiv {
+    .userPageNav.navBarDiv {
         width: 100%;
     }
-    .userPageNav .nav-p {
+    .userPageNav.nav-p {
         padding: 0.5rem 1rem;
         margin: 0 auto;
         font-weight: 800;
         border: none;
     }
+    .userPageNav .navBarDiv {
+        width: 100%;
+    }
+    .userPageNav .navbar-toggler {
+        float:right;
+    }
+
 }
 @media(min-width: 765px) {
     .userPageNav .nav-p {

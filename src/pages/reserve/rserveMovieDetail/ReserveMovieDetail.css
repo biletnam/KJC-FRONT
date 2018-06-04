@@ -1,0 +1,158 @@
+.reserve-content-parent {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.reserve-close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    background: none;
+    font-weight: 900;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.reserveMovie-d-title {
+    color:  #fa5252;
+    padding: 20px;
+}
+.reserve-content-parent .reserve-content {
+    padding: 10px;
+}
+.reserve-content-parent .reserve-content:not(:first-child) {
+    margin-top: 20px;
+}
+.reserve-content-parent .reserve-content .content-name {
+    font-weight: 900;
+    font-size: 20px;
+}
+.reserve-content-parent .reserve-schedule .content-body{
+    display: flex;
+}
+.reserve-content-parent .schedule-one {
+    padding: 10px;
+    margin: 3px;
+    background-color: #bababa;
+}
+.reserve-content-parent .reserve-content .content-body {
+    margin-top: 10px;
+}
+.reserve-content-parent .showChairParentDiv{
+    overflow: auto;
+}
+.reserve-content-parent .showChairParentDiv >div {
+    width: fit-content;
+}
+.reserve-content-parent .showChairScreenDiv{
+    text-align: center;
+}
+.reserve-content-parent .showChairChairDiv {
+    overflow: auto;
+}
+.reserve-content-parent .showChairScreen{
+    width: fit-content;
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #343a40;
+    color: #ffffff;
+    font-weight: 900;
+    border-radius: 5px;
+}
+.reserve-content-parent  .showChairRow {
+    display: flex;
+    justify-content: center;
+}
+.reserve-content-parent .showChairColumn {
+    flex: 1;
+    margin: 3px;
+    text-align: center;
+    background-color: gainsboro;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+}
+.reserve-content-parent .selectChairColumn {
+    background-color: #fa5252 !important;
+}
+.reserve-content-parent .selectedChairCount {
+    display: inline-block;
+    padding: 10px;
+    font-weight: 900;
+}
+.reserve-content-parent .showChairRowMark {
+    background-color: #343a40;
+    width: 50px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid #333333;
+    font-weight: 900;
+    color: white;
+}
+
+
+
+
+
+.reserve-content-parent .reserve-information .content-body{
+    display: flex;
+    min-width: 500px;
+}
+.reserve-content-parent .reserve-information .reserve-movie-image{
+    flex: 1;
+    background-color: #bababa;
+}
+.reserve-content-parent .reserve-information .reserve-information-content{
+    flex:3;
+    margin-left: 10px;
+}
+.reserve-content-parent .reserve-information .reserve-information-content .selected-chair {
+    margin-left: 5px;
+}
+
+.reserve-content-parent .to-pay-step {
+    text-align: center;
+}
+.to-pay-step button {
+    padding: 5px 20px;
+    background-color: #343a40;
+    color: #ffffff;
+    font-weight: 900;
+    /* border-radius: 5px; */
+    border: none;
+}
+
+
+
+.reserve-content-parent .calendarChild {
+    position: relative;
+    text-align: center;
+}
+
+.reserve-content-parent .calendarChild .realCalendarDiv{
+    position: absolute;
+    z-index: 9999;
+}
+.reserve-content-parent .viewDate {
+    font-weight: 900;
+    font-size: 20px;
+    color: #343a40;
+}
+.reserve-content-parent .calendarChild .calendarButton {
+    position: absolute;
+    left: 10px;
+    top: -5px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: 13px;
+    background: #343a40;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.reserve-content-parent .reserve-spot-title{
+    font-weight: 900;
+    font-size: 20px;
+}

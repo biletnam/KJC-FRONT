@@ -9,10 +9,10 @@ class ShowChair extends  Component {
         const rid = Number(roomId);
         const chairObject = {};
         const chairs = [
-            {name: 'A01', rId: rid}, {name: 'A02', rid: rid}, {name: 'A03', rId: rid}, {name: 'A04', rid:rid}, {name: 'A05', rId: rid},
+            {name: 'A01', rId: rid, price: 3000}, {name: 'A02', rid: rid, price: 3000}, {name: 'A03', rId: rid, price: 3000}, {name: 'A04', rid:rid}, {name: 'A05', rId: rid},
             {name: 'A06', rid:rid}, {name: 'A07', rId: rid}, {name: 'A08', rid:rid}, {name: 'A09', rId: rid}, {name: 'A10', rid:rid},
-/*            {name: 'A11', rId: rid}, {name: 'A12', rid: rid}, {name: 'A13', rId: rid}, {name: 'A14', rid:rid}, {name: 'A15', rId: rid},
-            {name: 'A16', rid:rid}, {name: 'A17', rId: rid}, {name: 'A18', rid:rid}, {name: 'A19', rId: rid}, {name: 'A20', rid:rid},*/
+          {name: 'A11', rId: rid}, {name: 'A12', rid: rid}, {name: 'A13', rId: rid}, {name: 'A14', rid:rid}, {name: 'A15', rId: rid},
+            {name: 'A16', rid:rid}, {name: 'A17', rId: rid}, {name: 'A18', rid:rid}, {name: 'A19', rId: rid}, {name: 'A20', rid:rid},
             {name: 'B01', rId: rid}, {name: 'B02', rid:rid}, {name: 'B03', rId: rid}, {name: 'B04', rid:rid}, {name: 'B05', rId: rid},
             {name: 'B06', rid:rid}, {name: 'B07', rId: rid}, {name: 'B08', rid:rid}, {name: 'B09', rId: rid}, {name: 'B10', rid:rid}
         ].map(this.chairParser).map((chair) => {
@@ -37,8 +37,13 @@ class ShowChair extends  Component {
         return chair;
     }
 
+    chairClick = (chair) => {
+        const { onChairClick } = this.props;
+        onChairClick(chair);
+    }
+
     render() {
-        const {roomId} = this.props;
+        const {roomId, selectedChair} = this.props;
         if(roomId) {
             this.loadChairOfRoom(roomId);
         }
@@ -52,9 +57,8 @@ class ShowChair extends  Component {
                      {this.state.rows.map((r) => {
                          return (
                              <div key={r} className={"showChairRow"}>
-                                 <div>{r}열</div>
                                {this.state.chairs[r].map((c) => {
-                                   return (<div key={r + '-' + c.col} className={'showChairColumn'}>{c.name}</div>)
+                                   return (<div key={r + '-' + c.col} className={`showChairColumn ${selectedChair.findIndex((chair) => chair.name ===c.name) !== -1 && 'selectChairColumn'}`} onClick={() => this.chairClick(c)}>{c.name}</div>)
                                })}
                                </div>
                          )

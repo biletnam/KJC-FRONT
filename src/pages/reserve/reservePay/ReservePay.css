@@ -1,0 +1,85 @@
+.reserve-pay-parent-div{
+    width: 500px;
+}
+.reserve-pay-parent-div .discount-div-title {
+    font-weight: 900;
+    font-size: 20px;
+    background: #fa5252;
+    color: #ffffff;
+    padding-left: 10px;
+}
+.reserve-pay-parent-div .discount-way-first {
+    margin-top: 10px;
+}
+
+
+.reserve-pay-parent-div .reserve-pay-way-div {
+    margin-top: 20px;
+}
+
+.reserve-pay-parent-div .pay-way-title {
+    font-weight: 900;
+    font-size: 20px;
+    background: #fa5252;
+    color: #ffffff;
+    padding-left: 10px;
+}
+.reserve-pay-parent-div .pay-way-first {
+    margin-top: 10px;
+}
+.reserve-pay-parent-div .pay-way-second {
+    margin-top: 5px;
+}
+
+
+.reserve-pay-parent-div .reserve-point-div {
+    margin-top: 20px;
+}
+.reserve-pay-parent-div .reserve-point-title {
+    font-weight: 900;
+    font-size: 17px;
+}
+.reserve-pay-parent-div .reserve-point-first {
+    margin-top: 10px;
+    background: #eaeaea;
+    padding: 10px;
+}
+.reserve-pay-parent-div .reserve-point-first >div {
+    font-weight: 900;
+}
+.reserve-pay-parent-div .reserve-point-first input {
+    border: 1px solid black;
+}
+
+
+.reserve-pay-total-title {
+    font-weight: 900;
+    font-size: 20px;
+    background: #fa5252;
+    color: #ffffff;
+    padding-left: 10px;
+}
+.total-pay-content {
+    display: flex;
+    width: 90%;
+}
+.total-pay-content span{
+    flex: 1;
+    font-size: 18px;
+    font-weight: 900;
+}
+.total-pay-button-div {
+    margin-top: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.total-pay-button-div button {
+    padding: 5px 30px;
+    background-color: #fa5252;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 20px;
+    /* border-radius: 5px; */
+    border: none;
+
+}

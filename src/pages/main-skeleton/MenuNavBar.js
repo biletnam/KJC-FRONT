@@ -45,9 +45,11 @@ class MenuNavBar extends Component {
                         </p>
                       </NavItem>
                       <NavItem>
-                        <p className="nav-p">
-                            예매하기
-                        </p>
+                            <Link to={'/reserve'} style={{textDecoration: 'none', color: 'black'}}>
+                              <p className="nav-p">
+                                   예매하기
+                              </p>
+                            </Link>
                       </NavItem>
                       <NavItem>
                             <Link to={'/login'} style={{textDecoration: 'none', color: 'black'}}>

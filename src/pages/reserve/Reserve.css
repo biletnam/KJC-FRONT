@@ -1,0 +1,128 @@
+.reserveDiv {
+    height: 100%;
+}
+.reserveDiv .page-title {
+    width: 100%;
+    background: #fa5252;
+    padding: 10px;
+    text-align: left;
+    font-weight: 900;
+    font-size: 20px;
+    color: #f8f9fa;
+}
+.reserveDiv .reserveParentDiv {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 20px;
+    overflow: auto;
+
+}
+.reserveDiv .reserveBodyDiv {
+    width: 1000px;
+    position: relative;
+    display: inline-block;
+    border: 2px solid black;
+}
+.reserveDiv .reserveBodyDiv .reserveRow {
+    display:flex;
+    margin: 0 !important;
+}
+.reserveDiv .reserveBodyDiv .calendarDiv{
+    width: 100%;
+    background-color: #fafafa;
+    border-bottom: 5px solid #343a40;
+}
+.reserveDiv .reserveBodyDiv .calendarChild {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+}
+
+.reserveDiv .reserveBodyDiv .calendarChild .realCalendarDiv{
+    position: absolute;
+    z-index: 9999;
+}
+.viewDate {
+    font-weight: 900;
+    font-size: 20px;
+    color: #343a40;
+}
+.calendarChild .calendarButton {
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: 13px;
+    background: #343a40;
+    color: #ffffff;
+    cursor: pointer;
+}
+.reserveDiv .rowCol {
+    flex:1;
+    padding: 0 !important;;
+}
+.reserveDiv .colTitle {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 900;
+    background-color: #fa5252;
+    color: #ffffff;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+.reserveDiv .colTitle.final{
+    border-right:none;
+}
+.reserveDiv .colBody.final{
+    border-right:none;
+}
+.reserveDiv .colBody {
+    padding: 10px;
+    height: 650px;
+    background-color: #fafafa;
+    border-right: 2px solid black;
+}
+.reserveDiv .reserveButton {
+    display: inline-block;
+    width: 80%;
+    border: none;
+    padding:10px;
+}
+.reserveDiv .reserveButtonDiv {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: none;
+}
+@media (max-width: 1000px) {
+    .reserveParentDiv {
+        width: 100%;
+        display: inline-block;
+        background-color: #ffffff;
+    }
+    .reserveDiv .reserveBodyDiv {
+        width: 100%;
+        display: inline-block;
+    }
+}
+@media(max-width: 574px) {
+    .reserveDiv .reserveBodyDiv .reserveRow {
+        display:flex;
+        flex-direction: column;
+        margin: 0 !important;
+    }
+    .reserveDiv .colTitle{
+        border-top: 2px solid black;
+        border-right: none;
+    }
+    .reserveDiv .colBody{
+        border-right: none;
+        height: 300px;
+    }
+}
