@@ -16,15 +16,20 @@ import'./MenuNavBar.css';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as windowSizeAction from 'reducers/windowSize';
-
-
+import * as loginAction from 'reducers/user/login';
+import {withRouter} from 'react-router-dom';
 class MenuNavBar extends Component {
     toggle = () => {
         const { WindowSizeActions } = this.props;
         WindowSizeActions.menuToggle();
     }
+    logout = () => {
+        const {history, LoginActions} = this.props;
+        LoginActions.logOut(history);
+    }
+
     render() {
-        const { isOpen } = this.props;
+        const { isOpen, isLogin } = this.props;
         return (
             <div className="navBarDiv userPageNav">
                 <Navbar color="#ffffff" light expand="md">
@@ -44,19 +49,36 @@ class MenuNavBar extends Component {
                             영화관
                         </p>
                       </NavItem>
+                        {isLogin &&
+                            <React.Fragment>
+                               <NavItem>
+                                    <Link to={'/reserveInfo'} style={{textDecoration: 'none', color: 'black'}}>
+                                      <p className="nav-p">
+                                           예매정보
+                                      </p>
+                                    </Link>
+                               </NavItem>
+                               <NavItem>
+                                    <Link to={'/userInfo'} style={{textDecoration: 'none', color: 'black'}}>
+                                      <p className="nav-p">
+                                           회원 정보
+                                      </p>
+                                    </Link>
+                                </NavItem>
+                            </React.Fragment>
+                        }
                       <NavItem>
-                            <Link to={'/reserve'} style={{textDecoration: 'none', color: 'black'}}>
-                              <p className="nav-p">
-                                   예매하기
-                              </p>
-                            </Link>
-                      </NavItem>
-                      <NavItem>
-                            <Link to={'/login'} style={{textDecoration: 'none', color: 'black'}}>
+                          {
+                              !isLogin &&  <Link to={'/login'} style={{textDecoration: 'none', color: 'black'}}>
                               <p className="nav-p">
                                   로그인
                               </p>
                             </Link>
+                          }
+                          {
+                              isLogin && <p className={"nav-p"} onClick={this.logout}>로그아웃</p>
+                          }
+
                       </NavItem>
                     </Nav>
                   </Collapse>
@@ -66,6 +88,7 @@ class MenuNavBar extends Component {
     }
 
 }
-export default connect((state) => ({header: state.windowSize.header, isOpen: state.windowSize.isOpen}), (dispatch) => ({
-    WindowSizeActions : bindActionCreators(windowSizeAction,dispatch)
-}))(MenuNavBar)
+export default withRouter(connect((state) => ({header: state.windowSize.header, isOpen: state.windowSize.isOpen}), (dispatch) => ({
+    WindowSizeActions : bindActionCreators(windowSizeAction,dispatch),
+    LoginActions: bindActionCreators(loginAction, dispatch)
+}))(MenuNavBar))

@@ -24,7 +24,8 @@ class DirectorMenuNavBar extends Component {
         WindowSizeActions.menuToggle();
     }
     render() {
-        const { isOpen, match} = this.props;
+        const { isOpen, match, loginData} = this.props;
+        console.log(loginData);
         return (
             <div className="navBarDiv directorMenu">
                 <Navbar color="#ffffff" light expand="md">
@@ -89,6 +90,5 @@ class DirectorMenuNavBar extends Component {
     }
 
 }
-export default withRouter(connect((state) => ({header: state.windowSize.header, isOpen: state.windowSize.isOpen}), (dispatch) => ({
-    WindowSizeActions : bindActionCreators(windowSizeAction,dispatch)
-}))(DirectorMenuNavBar))
+export default withRouter(connect((state) => ({header: state.windowSize.header, isOpen: state.windowSize.isOpen, loginData: state.login}), (dispatch) => ({
+    WindowSizeActions : bindActionCreators(windowSizeAction,dispatch)}))(DirectorMenuNavBar))

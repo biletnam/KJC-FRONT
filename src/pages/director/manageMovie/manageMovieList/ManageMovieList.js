@@ -20,32 +20,58 @@ class ManageMovieList extends Component {
                     columns={[
                         {
                             Header: '영화 ID',
-                            accessor: 'id'
+                            accessor: 'MOVIE_ID',
+                            maxWidth: '100'
                         },
                         {
                             Header: "이름",
-                            accessor: 'name'
+                            accessor: 'MOVIE_NAME',
+                            maxWidth: '200'
                         },
                         {
                             Header: "인물",
-                            columns: [
-                                {
-                                    Header: "배우",
-                                    accessor: "A"
-                                },
-                                {
-                                    Header: "감독",
-                                    accessor: "D"
-                                }
-                            ]
+                            accessor: 'PERSON',
+                            Cell: row => (
+                                <div>
+                                    {row.value.map((r) => {
+                                        return (<div className={'list-person-div'}>
+                                            <div>{r.PER_NAME}</div>
+                                            <div>{r.CH_NAME}</div>
+                                        </div>)
+                                    })}
+                              </div>
+                            )
                         },
                         {
                             Header: '장르',
-                            accessor:'genre'
+                            accessor:'GENRE'
                         },
                         {
                             Header: '관람등급',
-                            accessor: 'age'
+                            accessor: 'RATE',
+                            Cell: row => (
+                                <div>
+                                    {row.value === 0 && '전체 이용가'}
+                                    {row.value === 12 && '12세 이상'}
+                                    {row.value === 15 && '15세 이상'}
+                                    {row.value === 18 && '18세 이상'}
+                                </div>
+                            )
+                        },
+                        {
+                            Header: '포스터',
+                            accessor: 'MOVIE_IMG',
+                            Cell: row => (
+                                <div
+                                    style={{
+                                        width: '100px',
+                                        height: '100px',
+                                        backgroundColor: '#dadada',
+                                        borderRadius: '2px'
+                                    }}>
+                                    <img src ={'http://localhost:5000/' + row.value} style={{width: '100px', height: '100px'}}/>
+                              </div>
+                            )
                         }
                     ]}
                     defaultPageSize={10}

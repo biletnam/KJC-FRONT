@@ -11,6 +11,12 @@
 .searchPeopleParentDiv .searchPeopleItem .searchPeopleItemImage {
     flex: 1;
 }
+.searchPeopleParentDiv .searchPeopleItem .searchPeopleItemRole {
+    flex: 1;
+}
+.searchPeopleItemImage img {
+    width: 100%;
+}
 .searchPeopleParentDiv .searchPeopleItem .searchPeopleItemName {
     flex: 3;
 }

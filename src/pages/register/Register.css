@@ -14,7 +14,8 @@
 .register-form-div {
     width: 800px;
     display: inline-block;
-    margin-top:10%;
+    margin-top:30px;
+    margin-bottom: 30px;
     background-color: #ffffff;
 }
 
@@ -64,6 +65,61 @@
     content: ' ';
     width: 25%;
     border: 3px solid #fcc419;
+}
+
+.register-parent-div .address-input-div-parent {
+    width: 700px;
+    display: inline-block;
+}
+.register-parent-div .address-input-div {
+    display: flex;
+    margin-top: 5px;
+}
+.register-parent-div .address-input-div button {
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    background: #fa5252;
+    color: #ffffff;
+    font-weight: 900;
+    margin-left: 5px;
+}
+.register-parent-div .address-input-div .postCode{
+    flex: 0.3;
+}
+.register-parent-div .address-input-div .bigAddress {
+    flex: 0.8;
+}
+.register-parent-div .address-input-div .addressDetail {
+    flex: 0.5;
+}
+.register-parent-div .address-input-div span {
+    width: 100px;
+    font-weight: 900;
+}
+
+.register-parent-div .register-button-div {
+    margin: 20px;
+}
+.register-parent-div .register-button-div button {
+    padding: 5px 20px;
+    background-color: #fa5252;
+    border: none;
+    font-weight: 900;
+    color: #ffffff;
+}
+.register-parent-div .successMessage {
+    color: green;
+    font-weight: 900;
+    font-size: 0.8em;
+}
+.register-parent-div .errorMessage {
+    color: #fa5252;
+    font-weight: 900;
+    font-size: 0.8em;
+}
+.makeMarginTop20 {
+    margin-top: 20px;
 }
 @media (max-width: 850px) {
     .register-form-div {

@@ -14,3 +14,6 @@ html, body {
   width: 100%;
   margin: 0;
 }
+.ReactModal__Overlay {
+  z-index: 999;
+}

@@ -1,10 +1,23 @@
 import React, {Component} from 'react';
 import './SearchPeople.css';
+import axios from 'axios';
+import {serverUrl} from "../../../../../reducers/urlUtil";
+
 class SearchPeople extends Component {
-    people = [{id: 1, name: '토비 맥과이어'}, {id:2, name: '토니 스타크'}];
-    constructor(props) {
-        super(props);
-        this.state = {searchInput: '', people: []}
+    people = [];
+    state = {searchInput: '', people: [], isLoading: false};
+    componentWillMount() {
+        this.setState({isLoading: true});
+        axios.get(serverUrl + '/api/people')
+            .then((response) => {
+                this.people = response.data;
+                console.log(response);
+                this.setState({isLoading: false});
+            })
+            .catch((error) => {
+                console.log(error);
+                this.setState({isLoading: false});
+            });
     }
     onChangeSearchInput = (event) => {
         this.setState({searchInput: event.target.value}, () => {
@@ -12,27 +25,33 @@ class SearchPeople extends Component {
             if(searchInput.length === 0 ){
                 this.setState({people: []});
             }else {
-                this.setState({people: this.people.filter((p) => p.name.indexOf(searchInput) !== -1)});
+                this.setState({people: this.people.filter((p) => p.PER_NAME.indexOf(searchInput) !== -1)});
             }
         });
     }
     onPeopleItemClick = (person) => {
         const { onPersonClick } = this.props;
-        onPersonClick({...person, job: 'A'});
+        onPersonClick(person);
     }
     render() {
         const { onChangeSearchInput, onPeopleItemClick } = this;
         return(
             <div className={'searchPeopleParentDiv'}>
+                {this.state.isLoading && <p>인물을 불러오고 있습니다. 잠시 후에 검색해주세요.</p>}
                 <div>
                      <input type={'text'} value={this.state.searchInput} onChange={onChangeSearchInput} placeholder={'인물을 검색한뒤 클릭'}/>
                 </div>
                 <div>
                     {this.state.people.map((p) => {
                         return (
-                            <div className={'searchPeopleItem'} onClick={() => onPeopleItemClick(p)} key={p.id}>
-                                <div className={'searchPeopleItemImage'}>사진</div>
-                                <div className={'searchPeopleItemName'}>{p.name}</div>
+                            <div className={'searchPeopleItem'} onClick={() => onPeopleItemClick(p)} key={p.PER_ID}>
+                                <div className={'searchPeopleItemImage'}>
+                                    <img src={serverUrl + '/' + p.PER_IMG}/>
+                                </div>
+                                <div className={'searchPeopleItemRole'}>
+                                    {p.ROLE}
+                                </div>
+                                <div className={'searchPeopleItemName'}>{p.PER_NAME}</div>
                             </div>
                         )
                     })}

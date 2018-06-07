@@ -19,16 +19,20 @@ class ManagePeopleList extends Component {
                     columns={[
                         {
                             Header: '배우 ID',
-                            accessor: 'id',
+                            accessor: 'PER_ID',
                             maxWidth: '100'
                         },
                         {
                             Header: "이름",
-                            accessor: 'name'
+                            accessor: 'PER_NAME'
+                        },
+                        {
+                            Header: '역할',
+                            accessor: 'ROLE'
                         },
                         {
                             Header: "사진",
-                            accessor: 'picture',
+                            accessor: 'PER_IMG',
                             Cell: row => (
                                 <div
                                     style={{

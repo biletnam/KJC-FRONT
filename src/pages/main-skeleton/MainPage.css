@@ -7,12 +7,13 @@
     border-bottom: 1px solid #dadada;
     position: sticky;
     top: 0;
-    z-index: 0;
+    z-index: 99;
     background: #ffffff;
 }
 .mainParentDiv .mainBody {
-    height: 100vh;
     text-align: center;
+    background: #f1f3f5;
+    min-height: 100vh;
 }
 .mainParentDiv .commonMenuBar {
     width: 100%;

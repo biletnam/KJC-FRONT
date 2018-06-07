@@ -10,7 +10,7 @@ class ManagePeopleRegister extends Component {
     fileInput;
     emptyInputSetting = {
         nameInput: '',
-        informationInput: '',
+        roleInput: '',
         runningTimeInput: ''
     }
     constructor(props){
@@ -34,8 +34,8 @@ class ManagePeopleRegister extends Component {
     onSubmitButton = (event) => {
         const data = {...this.state};
         let noError = true;
-        const errorState = {nameInput: false, fileInput: false, informationInput: false};
-        if(!data.nameInput || data.nameInput.length < 3) {
+        const errorState = {nameInput: false, fileInput: false, roleInput: false};
+        if(!data.nameInput || data.nameInput.length < 1) {
             errorState.nameInput = true;
             noError = noError && false;
         }
@@ -43,8 +43,8 @@ class ManagePeopleRegister extends Component {
             errorState.fileInput = true;
             noError = noError && false;
         }
-        if(!data.informationInput || data.informationInput.length < 3) {
-            errorState.informationInput = true;
+        if(!data.roleInput || data.roleInput.length < 1) {
+            errorState.roleInput = true;
             noError = noError && false;
         }
         if(!noError) {
@@ -53,7 +53,7 @@ class ManagePeopleRegister extends Component {
         }
         const formData = new FormData();
         formData.append('name', this.state.nameInput);
-        formData.append('information', this.state.informationInput);
+        formData.append('role', this.state.roleInput);
         formData.append('imageFile', this.fileInput.files[0]);
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
@@ -95,12 +95,12 @@ class ManagePeopleRegister extends Component {
                               </Col>
                             </FormGroup>
                             <FormGroup row>
-                              <Label for="password" sm={3}>인물 정보</Label>
+                              <Label for="password" sm={3}>역할</Label>
                               <Col sm={6}>
-                                  <Input type="textarea" value = {this.state.informationInput} name="information" id="informationInput" placeholder={"인물 정보"} onChange={onInputChange}/>
+                                  <Input type="text" value = {this.state.roleInput} name="role" id="roleInput" placeholder={"역할 입력"} onChange={onInputChange}/>
                               </Col>
-                                {this.state.error['informationInput'] && <Col sm={2}>
-                                    <FormText className={'error'}>인물 정보를 3글자 이상 입력해주세요</FormText>
+                                {this.state.error['roleInput'] && <Col sm={2}>
+                                    <FormText className={'error'}>역할을 1글자 이상 입력해주세요</FormText>
                                 </Col>}
                             </FormGroup>
                         </Form>

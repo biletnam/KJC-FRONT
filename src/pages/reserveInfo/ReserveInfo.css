@@ -1,0 +1,24 @@
+.reserve-information-parent-div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 800px;
+    display: inline-block;
+    background-color: #ffffff;
+}
+.reserve-information-body {
+    padding: 10px;
+}
+.reserve-information-title{
+    width: 100%;
+    background: #fa5252;
+    padding: 10px;
+    text-align: left;
+    font-weight: 900;
+    font-size: 20px;
+    color: #f8f9fa;
+}
+@media (max-width: 800px) {
+    .reserve-information-parent-div{
+        width: 100%;
+    }
+}

@@ -1,0 +1,21 @@
+.manage-select-genre-parent {
+    display: flex;
+}
+.manage-select-genre-parent >div {
+    flex: 1;
+}
+.manage-select-genre-parent select {
+    width: 100%;
+}
+.manage-selected-genre button{
+    margin-bottom: 2px;
+}
+.manage-selected-genre .manage-selected-genre-title {
+    font-weight: 900;
+}
+.manage-select-genre-parent button {
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+    font-weight: 900;
+}

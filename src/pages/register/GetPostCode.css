@@ -1,0 +1,11 @@
+.daum-post-code .closeButton {
+    text-align: right;
+    background: #fa5252;
+    padding: 10px;
+}
+.daum-post-code .closeButton button {
+    border: none;
+    background: none;
+    font-weight: 900;
+    cursor: pointer;
+}

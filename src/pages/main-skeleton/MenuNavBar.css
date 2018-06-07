@@ -5,6 +5,9 @@
     width: 50%;
     display: inline-block;
 }
+.userPageNav .nav-p {
+    cursor: pointer;
+}
 @media(max-width: 765px) {
     .userPageNav .navbar {
         text-align: center;
@@ -17,10 +20,10 @@
     .userPageNav.navBarDiv {
         width: 100%;
     }
-    .userPageNav.nav-p {
+    .userPageNav .nav-p {
         padding: 0.5rem 1rem;
         margin: 0 auto;
-        font-weight: 800;
+        font-weight: 900;
         border: none;
     }
     .userPageNav .navBarDiv {
@@ -37,7 +40,7 @@
         width: 100px;
         height: 50px;
         line-height: 50px;
-        font-weight: 800;
+        font-weight: 900;
         border-right: 1px solid #dadada;
     }
     .userPageNav .nav-p.first {

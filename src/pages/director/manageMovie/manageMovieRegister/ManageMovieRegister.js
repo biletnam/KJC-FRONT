@@ -8,24 +8,29 @@ import { bindActionCreators} from 'redux';
 import axios from 'axios';
 import SearchPeople from "./searchPeople/SearchPeople";
 import SelectedPeople from "./selectedPeople/SelectedPeople";
-
+import ManageSelectGenere from "./selectGenre/ManageSelectGenre";
+import Swal from 'sweetalert2';
 class ManageMovieRegister extends Component {
     fileInput;
     initialInput = {
         nameInput: '',
         imageFIleInput: '',
         informationInput: '',
-        openingDateInput: '',
-        runningTimeInput: '',
-        minAgeSelectInput: 0
+        runningTimeInput: 0,
+        rateInput: 0,
+        distInput: ''
     }
-    people = [{id:1, name: '바보'}]
+    genres = [
+        {id: 1, name: '유머'}, {id:2, name: '코미디'}, {id: 3, name: '로맨스'},
+        {id: 4, name: '공포'}, {id:5, name: '역사'}, {id:6, name: '액션'}
+    ]
     constructor(props){
         super(props);
 
         this.state = {
             ...this.state,
             inputs: this.initialInput,
+            selectedGenres: [],
             error: {},
             people: []
         }
@@ -46,18 +51,35 @@ class ManageMovieRegister extends Component {
         if(this.checkError(inputs)) {
             return false;
         }
+
         const formData = new FormData();
         formData.append('name', inputs.nameInput);
         formData.append('image', this.fileInput.files[0]);
         formData.append('information', inputs.informationInput);
-        formData.append('openingDate', inputs.openingDateInput);
+        formData.append('dist', inputs.distInput);
         formData.append('runningTime', inputs.runningTimeInput);
-        formData.append('minAge', inputs.minAgeSelectInput);
+        formData.append('rate', inputs.rateInput);
+        if(this.state.people.length > 0) {
+           this.state.people.map((p) => {
+                formData.append('people[]', JSON.stringify(p));
+            });
+        }
+        if(this.state.selectedGenres.length > 0) {
+            this.state.selectedGenres.map((g) => {
+                formData.append('genre[]', g.name);
+            });
+        }
         axios.post('http://localhost:5000/api/movies', formData, {header: {
             'Content-Type': 'multipart/form-data'
         }}).then((response) => {
             this.fileInput.value = '';
-            this.setState({inputs: this.initialInput});
+            this.setState({inputs: this.initialInput, selectedGenres: [], people: []});
+            Swal({
+                title: '등록 성공',
+                text: '영화 등록에 성공하였습니다!',
+                type: 'success',
+                confirmButtonText: '확인',
+            });
             console.log(response);
         }).catch((error) => {
             console.log(error);
@@ -68,11 +90,12 @@ class ManageMovieRegister extends Component {
             nameInput: false,
             imageInput: false,
             informationInput: false,
-            openingDateInput: false,
-            runningTimeInput: false
+            runningTimeInput: false,
+            distInput: false,
+            genre: false
         }
         let noError = true;
-        if(!inputs.nameInput && inputs.nameInput.length < 2){
+        if(!inputs.nameInput && inputs.nameInput.length < 1){
             noError = noError && false;
             error.nameInput = true;
         }
@@ -80,15 +103,19 @@ class ManageMovieRegister extends Component {
             noError = noError && false;
             error.imageInput = true;
         }
+        if(!this.state.selectedGenres || this.state.selectedGenres.length === 0) {
+            noError = noError && false;
+            error.genre = true;
+        }
         if(!inputs.informationInput && inputs.nameInput.length < 3) {
             noError = noError && false;
             error.imageInput = true;
         }
-        if(!inputs.openingDateInput && isNaN(new Date(inputs.openingDateInput).getTime())) {
+        if(!inputs.distInput || inputs.distInput.length < 1) {
             noError = noError && false;
-            error.openingDateInput = true;
+            error.distInput = true;
         }
-        if(!inputs.runningTimeInput && inputs.runningTimeInput === 0) {
+        if(!inputs.runningTimeInput || inputs.runningTimeInput < 1) {
             noError = noError && false;
             error.runningTimeInput = true;
         }
@@ -96,25 +123,50 @@ class ManageMovieRegister extends Component {
         if(noError) {
             return false;
         }
+
+        Swal({
+            title: '등록 시도 실패',
+            text: '입력을 확인해주세요',
+            type: 'error',
+            confirmButtonText: '확인',
+        });
         return true;
     }
     onPersonClick = (person) => {
-        const index = this.state.people.findIndex((p) => p.id === person.id);
+        const index = this.state.people.findIndex((p) => p.PER_ID === person.PER_ID);
         if(index !== -1) {
             return false;
         }
         this.setState({people: [...this.state.people, person]});
     }
-    onPersonUpdate = (person) => {
-        const people = [...this.state.people];
-        const index = people.findIndex((p) => p.id === person.id);
+    onPersonChange = (person) => {
+        const index = this.state.people.findIndex((p) => p.PER_ID === person.PER_ID);
+        if(index == -1) {
+            return false;
+        }
+        const people = this.state.people;
         people[index] = person;
-        this.setState({people: people}, ()=> console.log(this.state));
+        this.setState({people: people}, () => {console.log(this.state)});
     }
     onPersonDelete = (person) => {
-        this.setState({people: this.state.people.filter((p) => p.id !== person.id)});
+        this.setState({people: this.state.people.filter((p) => p.PER_ID !== person.PER_ID)});
     }
-
+    onGenreAdd = (gId) => {
+        const index = this.state.selectedGenres.findIndex((g) => g.id === gId);
+        if(index !== -1) {
+            return false;
+        }
+        const genre = this.genres.find((g) => g.id === Number(gId));
+        console.log(genre);
+        if(genre) {
+            this.setState({selectedGenres: [...this.state.selectedGenres, genre]});
+        }
+    }
+    onGenreDelete = (gId) => {
+        console.log('here');
+        console.log(gId);
+        this.setState({selectedGenres: this.state.selectedGenres.filter((g) => g.id !== Number(gId))});
+    }
     render() {
         const { onInputChange, onPersonClick }  = this;
         return (
@@ -130,17 +182,41 @@ class ManageMovieRegister extends Component {
                               <Col sm={6}>
                                 <Input type="text" value={this.state.inputs.nameInput} name="name" id="nameInput" placeholder="영화 이름" onChange={onInputChange} />
                               </Col>
+                                <Col sm={3}>
+                                    {this.state.error.nameInput && <p>이름을 입력해주세요.</p>}
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                              <Label for="id" sm={3}>배급사</Label>
+                              <Col sm={6}>
+                                <Input type="text" value={this.state.inputs.distInput} name="dist" id="distInput" placeholder="배급사" onChange={onInputChange} />
+                              </Col>
+                                <Col sm={3}>
+                                    {this.state.error.distInput && <p>배급사를 입력해주세요.</p>}
+                                </Col>
                             </FormGroup>
                             <FormGroup row>
                               <Label for="password" sm={3}>영화 이미지</Label>
                               <Col sm={4}>
                                 <input type="file" name="imageFile" id="imageFileInput" ref={input => {this.fileInput = input}}/>
                               </Col>
+                                <Col sm={3}>
+                                    {this.state.error.imageInput && <p>프로필 사진은 필수입니다.</p>}
+                                </Col>
                             </FormGroup>
+                            <FormGroup row>
+                              <Label for="exampleSelect" sm={3}>장르</Label>
+                               <Col sm={6}>
+                                   <ManageSelectGenere genres = {this.genres} selectedGenres={this.state.selectedGenres} onGenreAdd={this.onGenreAdd} onGenreDelete={this.onGenreDelete}/>
+                               </Col>
+                                <Col sm={3}>
+                                    {this.state.error.genre && <p>장르는 필수입니다.</p>}
+                                </Col>
+                           </FormGroup>
                            <FormGroup row>
-                              <Label for="exampleSelect" sm={3}>관람 등급</Label>
+                              <Label for="rateSelect" sm={3}>관람 등급</Label>
                                <Col sm={4}>
-                                <Input type="select" value={this.state.inputs.minAgeSelectInput} name="minAgeSelect" id="minAgeSelectInput" onChange={onInputChange}>
+                                <Input type="select" value={this.state.inputs.rateInput} name="rateSelect" id="rateInput" onChange={onInputChange}>
                                 <option value={0}>전체 이용가</option>
                                 <option value={12}>12세 이상</option>
                                 <option value={15}>15세 이상</option>
@@ -154,25 +230,17 @@ class ManageMovieRegister extends Component {
                                   <SearchPeople onPersonClick={onPersonClick}/>
                                   <div className={'selectedPersonParentDiv'}>
                                           <FormText>선택된 인물</FormText>
-                                      <SelectedPeople people = {this.state.people} personDelete = {this.onPersonDelete} personUpdate = {this.onPersonUpdate}/>
+                                      <SelectedPeople people = {this.state.people} personDelete = {this.onPersonDelete} onPersonChange = {this.onPersonChange} />
                                   </div>
                               </Col>
                            </FormGroup>
                             <FormGroup row>
                               <Label for="password" sm={3}>영화 정보</Label>
-                              <Col sm={8}>
+                              <Col sm={6}>
                                   <Input type="textarea" value={this.state.inputs.informationInput} name="information" id="informationInput" placeholder={"영화 정보"} onChange={onInputChange}/>
                               </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                              <Label for="password" sm={3}>개봉일</Label>
-                              <Col sm={4}>
-                                  <MaskedInput  mask={[/[1-2]/, /\d/, /\d/,/\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
-                                                value={this.state.inputs.openingDateInput}
-                                                className="form-control"
-                                                type="text"
-                                                name="openingDate"
-                                                id="openingDateInput" onChange={onInputChange}/>
+                              <Col sm={3}>
+                                    {this.state.error.informationInput && <p>영화 정보를 입력해주세요</p>}
                               </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -184,6 +252,9 @@ class ManageMovieRegister extends Component {
                                         <span className="input-group-text" id="inputGroup-sizing-sm">분</span>
                                       </div>
                                   </div>
+                              </Col>
+                              <Col sm={3}>
+                                    {this.state.error.runningTimeInput && <p>러닝 타임은 1분 이상이어야 합니다.</p>}
                               </Col>
                             </FormGroup>
                         </Form>

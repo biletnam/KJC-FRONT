@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import './NonUserLogin.css';
 import MaskedInput from 'react-text-mask';
+import axios from 'axios';
 class NonUserLogin extends Component{
     render() {
         return (
@@ -14,23 +15,13 @@ class NonUserLogin extends Component{
                         <FormGroup row>
                           <Label for="id" sm={3}>이름</Label>
                           <Col sm={8}>
-                            <Input type="text" name="id" id="idInput" placeholder="이름" />
+                            <Input type="text" name="name" id="nameInput" placeholder="이름" />
                           </Col>
                         </FormGroup>
                         <FormGroup row>
-                          <Label for="password" sm={3}>고유번호</Label>
-                          <Col sm={4}>
-                            <Input type="password" name="password" id="specialNumberInfo" placeholder="고유번호 4자리" maxLength={4} />
-                          </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                          <Label for="password" sm={3}>주민등록번호</Label>
+                          <Label for="password" sm={3}>핸드폰 번호</Label>
                           <Col sm={8}>
-                            <MaskedInput
-                                mask={[/\d/, /\d/, /\d/,/\d/,/\d/,/\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
-                                className="form-control"
-                                placeholder="주민등록번호"
-                            />
+                            <Input type="text" name="phone" id="phoneInput" placeholder="전화번호(숫자만)" />
                           </Col>
                         </FormGroup>
                     </Form>
