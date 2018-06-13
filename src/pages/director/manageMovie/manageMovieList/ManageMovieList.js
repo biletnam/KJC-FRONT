@@ -11,6 +11,12 @@ class ManageMovieList extends Component {
         const {MoviesActions} = this.props;
         MoviesActions.getMovies();
     }
+    onChangePlaying = (data) => {
+        const {MoviesActions} = this.props;
+        MoviesActions.changePlaying(data.MOVIE_ID, data.IS_PLAYING)
+            .then((data) => {MoviesActions.getMovies(); alert('성공')})
+            .catch((data) => alert('실패!'));
+    }
     render() {
         const data = this.props.data.movies || [];
         return (
@@ -26,7 +32,7 @@ class ManageMovieList extends Component {
                         {
                             Header: "이름",
                             accessor: 'MOVIE_NAME',
-                            maxWidth: '200'
+                            maxWidth: '100'
                         },
                         {
                             Header: "인물",
@@ -72,6 +78,18 @@ class ManageMovieList extends Component {
                                     <img src ={'http://localhost:5000/' + row.value} style={{width: '100px', height: '100px'}}/>
                               </div>
                             )
+                        },
+                        {
+                            Header: '상영중',
+                            accessor: 'IS_PLAYING',
+                            maxWidth: 100
+                        },
+                        {
+                            Header: '',
+                            Cell: (row) => (<div>
+                                {row.original.IS_PLAYING !== 'Y' && <button onClick={() => this.onChangePlaying(row.original)}>상영</button>}
+                                {row.original.IS_PLAYING === 'Y' && <button onClick={() => this.onChangePlaying(row.original)}>종영</button>}
+                            </div>)
                         }
                     ]}
                     defaultPageSize={10}

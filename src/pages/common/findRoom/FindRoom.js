@@ -1,62 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators} from 'redux';
+import {bindActionCreators} from 'redux';
+import * as branch from 'reducers/branch';
+import * as cinema from 'reducers/cinema';
 import './FindRoom.css';
 class FindRoom extends Component {
-    spot;
-    room;
-    state = {spotRoom: [], spotId: null, roomId: null}
+    branch;
+    cinema;
+    state = {branchCinema: [], branchId: -1, cinemaNo: -1}
     componentDidMount(){
-        setTimeout(()=> {
-            this.spot = [{id:1, name: '지점 1'}, {id:2, name: "지점 2"}];
-            this.room =[{id:1, spotId: 1, name:'상영관1'},
-                {id:2, spotId: 1, name: '상영관2'},
-                {id: 3, spotId:2, name: '상영관1'},
-                {id:4, spotId:2, name: '상영관 2'}
-            ];
-            this.spotSetting(this.spot);
-        },1000);
-        console.log("componentDidMount");
+        const {BranchActions, CinemaActions} = this.props;
+        BranchActions.getBranch();
+        CinemaActions.getCinema();
     }
-    spotSetting = (spot) => {
-        const newSpot = [{id: -1, name: '선택 안됨'}, ...spot];
-        this.spot = newSpot;
-        this.setState({spotId: -1})
-    }
-    spotSelect = (event) => {
+    branchSelect = (event) => {
         const {onRoomSelect} = this.props;
-        const spotId = event.target.value;
-        const spotRoom = this.room.filter((r) => r.spotId === Number(spotId));
-        const defaultRoomId = spotRoom[0] && spotRoom[0].id;
-        this.setState({spotId: spotId, spotRoom: spotRoom, roomId: defaultRoomId}, () => {
-            onRoomSelect(this.state.roomId);
+        const branch = Number(event.target.value);
+        const branchCinema = [{CINEMA_NO: -1},...this.cinema.filter((c) => c.BRCH_ID === Number(branch))];
+        const defaultCinemaNO = -1;
+        this.setState({branchId: branch, branchCinema: branchCinema, cinemaNo: -1}, () => {
+            onRoomSelect(this.state.branchId, this.state.cinemaNo);
         });
     }
-    roomSelect = (event) => {
+    cinemaSelect = (event) => {
         const { onRoomSelect } = this.props;
-        const roomId = Number(event.target.value);
-        this.setState({roomId: roomId}, () => {
-            onRoomSelect(this.state.roomId);
+        const cinemaNo = Number(event.target.value);
+        this.setState({cinemaNo: cinemaNo}, () => {
+            onRoomSelect(this.state.branchId, this.state.cinemaNo);
         });
     }
     render() {
+        this.branch = [{BRCH_ID: -1, BRCH_NAME: '선택 안됨'}, ...this.props.branch.data.branch];
+        this.cinema = [{CINEMA_NO: -1}, ...this.props.cinema.data.cinema];
+        const branchPending = this.props.branch.pending;
+        const cinemaPending = this.props.cinema.pending;
         return (
             <div className={'findRoomParentDiv'}>
                 <div className={'findSpotDiv'}>
                     {
-                        this.state.spotId &&
-                            <select value = {this.state.spotId} onChange={this.spotSelect}>
-                            {this.spot.map((s) => {
-                                return (<option value={s.id}>{s.name}</option>)
+                        !branchPending && !cinemaPending &&
+                            <select value = {this.state.branchId} onChange={this.branchSelect}>
+                            {this.branch.map((b) => {
+                                return (<option value={b.BRCH_ID} key={b.BRCH_ID}>{b.BRCH_NAME}</option>)
                             })}
                             </select>
                     }
                 </div>
                 <div className={'findRoomDiv'}>
-                    {this.state.spotId && this.state.roomId &&
-                         <select value = {this.state.roomId} onChange={this.roomSelect}>
-                             {this.state.spotRoom.map((r) => {
-                                 return (<option value={r.id}>{r.name}</option>)
+                    {this.branch && this.state.branchCinema.length > 1 &&
+                         <select value = {this.state.cinemaNo} onChange={this.cinemaSelect}>
+                             {this.state.branchCinema.map((c) => {
+                                 return (<option value={c.CINEMA_NO} key={c.CINEMA_NO}>{c.CINEMA_NO !== -1 && `제 ${c.CINEMA_NO} 상영관`}</option>)
                              })}
                          </select>
                     }
@@ -66,4 +60,8 @@ class FindRoom extends Component {
     }
 
 }
-export default FindRoom;
+
+export default connect((state) => ({branch: state.branch, cinema: state.cinema}), (dispatch) => ({
+    BranchActions: bindActionCreators(branch, dispatch),
+    CinemaActions: bindActionCreators(cinema, dispatch)
+}))(FindRoom);

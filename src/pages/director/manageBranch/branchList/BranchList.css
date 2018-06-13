@@ -1,0 +1,10 @@
+.branch-list-parent-div {
+    width: 1000px;
+    display: inline-block;
+    margin-top: 30px;
+}
+@media(max-width: 1000px) {
+    .branch-list-parent-div{
+        width: 100%;
+    }
+}

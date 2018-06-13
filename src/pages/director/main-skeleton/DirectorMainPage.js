@@ -13,6 +13,8 @@ import ManageRoomMain from "../manageRoom/ManageRoomMain";
 import ManageMovieScheduleMain from "../manageMovieSchedule/ManageMovieScheduleMain";
 import ManagePriceMain from "../managePrice/ManagePriceMain";
 import ManageMemberMain from "../manageMember/ManageMemberMain";
+import ManageBranch from "../manageBranch/ManageBranch";
+import ManagePayAndDiscount from "../managePayAndDiscount/ManagePayAndDiscount";
 class DirectorMainPage extends Component {
     alarmHeaderSize = () => {
         const { WindowSizeActions, isOpen}  = this.props;
@@ -42,6 +44,8 @@ class DirectorMainPage extends Component {
                 <Route path={match.path + '/manageMovieSchedule'} component={ManageMovieScheduleMain}></Route>
                 <Route path={match.path + '/managePrice'} component={ManagePriceMain}></Route>
                 <Route path={match.path + '/manageMember'} component={ManageMemberMain}></Route>
+                <Route path={match.path + '/manageBranch'} component={ManageBranch}></Route>
+                <Route path={match.path + '/payAndDiscount'} component={ManagePayAndDiscount}></Route>
             </div>
         </div>);
     }

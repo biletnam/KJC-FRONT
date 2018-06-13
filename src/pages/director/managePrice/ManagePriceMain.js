@@ -4,7 +4,7 @@ import './ManagePriceMain.css';
 import PriceMovieScheduleList from "./priceMovieScheduleList/PriceMovieScheduleList";
 import PriceMovieScheduleRegister from "./priceMovieScheduleRegister/PriceMovieScheduleRegister";
 import PriceChairList from "./priceChairList/PriceChairList";
-import PriceChairRegister from "./priecChairRegister/PriceChairRegister";
+import PriceChairRegister from "./priceChairRegister/PriceChairRegister";
 class ManagePriceMain extends Component{
     render() {
         const {match} = this.props;
@@ -12,10 +12,10 @@ class ManagePriceMain extends Component{
             <div className={'managePriceParent'}>
                 <div>
                     <ul>
-                        <li><Link to={match.url}>상영 가격 목록</Link></li>
-                        <li><Link to={match.url + '/schedule/register'}>상영 가격 등록</Link></li>
-                        <li><Link to={match.url+'/chair'}>좌석 가격 목록</Link></li>
-                        <li><Link to={match.url + '/chair/register'}>좌석 가격 등록</Link></li>
+                        <li><Link to={match.url}>상영 종류 목록</Link></li>
+                        <li><Link to={match.url + '/schedule/register'}>상영 종류 등록</Link></li>
+                        <li><Link to={match.url+'/chair'}>좌석 종류 목록</Link></li>
+                        <li><Link to={match.url + '/chair/register'}>좌석 종류 등록</Link></li>
                     </ul>
                 </div>
                 <div className={'managePriceBody'}>

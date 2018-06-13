@@ -27,24 +27,15 @@ class MainPage extends Component {
             WindowSizeActions.headerChange(document.getElementsByClassName('mainMenuBar')[0].offsetHeight);
         }
     }
-    renderAvialable = () => {
-        this.setState({renderAvailable: true});
-    }
     componentWillMount() {
         const {LoginActions} = this.props;
-        checkLogin().then((data) => {
-            console.log('loginSuccess', data)
-            LoginActions.loginSuccess();
-            this.renderAvialable();
-        }).catch((error) => {if(error === 'noToken') {
-            this.renderAvialable();
-            return false;
-        }});
+        LoginActions.loginCheck();
     }
     componentDidMount() {
         const store = this.props.store;
         console.log('thisis store', store);
-        if(this.state.renderAvailable) {
+        const {checkLoginPending} = this.props.loginData;
+        if(!checkLoginPending) {
             this.alarmHeaderSize();
         }
         window.addEventListener("resize", this.alarmHeaderSize);
@@ -55,7 +46,8 @@ class MainPage extends Component {
     render() {
         console.log(this.props.header);
         const { header, loginData} = this.props;
-        return (this.state.renderAvailable && <div className = "mainParentDiv" id= 'mainParentDiv'>
+        const {checkLoginPending} = this.props.loginData;
+        return (!checkLoginPending && <div className = "mainParentDiv" id= 'mainParentDiv'>
             <div className="mainMenuBar">
                 <MenuNavBar onToggle = {this.alarmHeaderSize} isLogin = {loginData.login}/>
             </div>

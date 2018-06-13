@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './MovieFrame.css';
 import { withRouter } from 'react-router-dom';
+import {serverUrl} from "../../reducers/urlUtil";
+
 class  MovieFrame extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         return JSON.stringify(nextProps.movie) !== JSON.stringify(this.props.movie);
@@ -10,12 +12,15 @@ class  MovieFrame extends Component {
         return (
             <div className = "movieFrame">
             <div className="image">
-                <img src = {movie.image}/>
+                <img src = {serverUrl + '/' + movie.MOVIE_IMG}/>
             </div>
             <div className="name">
-                {movie.name}
+                {movie.MOVIE_NAME}
             </div>
-            <div className="buttons"><button onClick={() => {selectMovie(movie.id); history.push('/')}}>예매하기</button></div>
+            <div className="buttons">
+                <button>정보</button>
+                <button onClick={() => {selectMovie(movie)}}>예매하기</button>
+            </div>
         </div>
         )
     }

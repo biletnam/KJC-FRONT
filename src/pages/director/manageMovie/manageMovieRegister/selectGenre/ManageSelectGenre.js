@@ -21,7 +21,7 @@ class ManageSelectGenere extends Component {
                 <div className = {'manage-select-genre-select-div'}>
                     <select value={this.state.genreId} onChange={this.optionChange}>
                         {genres.map((g) => {
-                            return (<option value={g.id}>{g.name}</option>)
+                            return (<option value={g.id} key={g.id}>{g.name}</option>)
                         })}
                      </select>
                 </div>
@@ -31,7 +31,7 @@ class ManageSelectGenere extends Component {
                 <div className={'manage-selected-genre'}>
                     <div className={'manage-selected-genre-title'}>선택된 장르</div>
                     {selectedGenres.map((sg) => {
-                        return <button type={'button'} onClick={() => this.deleteGenre(sg.id)}>{sg.name}</button>
+                        return <button type={'button'} onClick={() => this.deleteGenre(sg.id)} key={sg.id}>{sg.name}</button>
                     })}
                 </div>
             </div>

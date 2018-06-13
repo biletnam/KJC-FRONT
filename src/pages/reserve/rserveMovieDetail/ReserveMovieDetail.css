@@ -33,13 +33,21 @@
 .reserve-content-parent .schedule-one {
     padding: 10px;
     margin: 3px;
-    background-color: #bababa;
+    background-color: #868e96;
+}
+.reserve-content-parent .schedule-one.selectedSchedule {
+    background-color: #fa5252;
+}
+.reserve-content-parent .schedule-one .schedule-name {
+
 }
 .reserve-content-parent .reserve-content .content-body {
     margin-top: 10px;
 }
 .reserve-content-parent .showChairParentDiv{
+    display: inline-block;
     overflow: auto;
+    margin-top: 10px
 }
 .reserve-content-parent .showChairParentDiv >div {
     width: fit-content;
@@ -75,6 +83,10 @@
 .reserve-content-parent .selectChairColumn {
     background-color: #fa5252 !important;
 }
+.reserve-content-parent .reserved {
+    background-color: #333333 !important;
+    color: #bababa;
+}
 .reserve-content-parent .selectedChairCount {
     display: inline-block;
     padding: 10px;
@@ -93,14 +105,25 @@
 
 
 
+.reserve-content-parent .loading {
+    width: 100%;
+    text-align: center;
+}
 
 .reserve-content-parent .reserve-information .content-body{
     display: flex;
     min-width: 500px;
 }
+.reserve-content-parent .content-seat-body{
+    text-align: center !important;
+}
 .reserve-content-parent .reserve-information .reserve-movie-image{
     flex: 1;
     background-color: #bababa;
+}
+.reserve-content-parent .reserve-information .reserve-movie-image img{
+    width: 100%;
+    hegiht: 100%;
 }
 .reserve-content-parent .reserve-information .reserve-information-content{
     flex:3;

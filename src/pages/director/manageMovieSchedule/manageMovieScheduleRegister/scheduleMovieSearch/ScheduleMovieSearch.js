@@ -3,6 +3,7 @@ import './ScheduleMovieSearch.css';
 import * as movies from 'reducers/movies';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
+import {serverUrl} from "../../../../../reducers/urlUtil";
 
 class ScheduleMovieSearch extends Component {
     movieDatas;
@@ -20,7 +21,7 @@ class ScheduleMovieSearch extends Component {
             if(searchInput.length === 0 ){
                 this.setState({movies: []});
             }else {
-                this.setState({movies: this.movieDatas.filter((m) => m.name.indexOf(searchInput) !== -1)});
+                this.setState({movies: this.movieDatas.filter((m) => m.MOVIE_NAME.indexOf(searchInput) !== -1)});
             }
         });
     }
@@ -39,9 +40,9 @@ class ScheduleMovieSearch extends Component {
                 <div>
                     {this.state.movies.map((m) => {
                         return (
-                            <div className={'searchMovieItem'} onClick={() => onMovieClick(m)} key={m.id}>
-                                <div className={'searchMovieItemImage'}><img src={m.image}/></div>
-                                <div className={'searchMovieItemName'}>{m.name}</div>
+                            <div className={'searchMovieItem'} onClick={() => onMovieClick(m)} key={m.MOVIE_ID}>
+                                <div className={'searchMovieItemImage'}><img src={serverUrl + '/' + m.MOVIE_IMG}/></div>
+                                <div className={'searchMovieItemName'}>{m.MOVIE_NAME}</div>
                             </div>
                         )
                     })}

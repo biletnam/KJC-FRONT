@@ -2,44 +2,38 @@ import React, { Component } from 'react'
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 import './ManageRoomList.css';
-import * as people from 'reducers/people'
+import * as cinema from 'reducers/cinema'
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
+
 class ManageRoomList extends Component {
     componentDidMount() {
-        const {PeopleActions} = this.props;
-        PeopleActions.getPeople();
+        const {CinemaActions} = this.props;
+        CinemaActions.getCinema();
     }
     render() {
-        const data = this.props.data.people || [];
+        const data = this.props.data.cinema;
         return (
             <div className={'manageRoomListDiv'}>
                 <ReactTable
                     data={data}
                     columns={[
                         {
-                            Header: '배우 ID',
-                            accessor: 'id',
+                            Header: '상영관 번호',
+                            accessor: 'CINEMA_NO',
                             maxWidth: '100'
                         },
                         {
-                            Header: "이름",
-                            accessor: 'name'
+                            Header: "지점 번호",
+                            accessor: 'BRCH_ID'
                         },
                         {
-                            Header: "사진",
-                            accessor: 'picture',
-                            Cell: row => (
-                                <div
-                                    style={{
-                                        width: '100px',
-                                        height: '100px',
-                                        backgroundColor: '#dadada',
-                                        borderRadius: '2px'
-                                    }}>
-                                    <img src ={'http://localhost:5000/' + row.value} style={{width: '100px', height: '100px'}}/>
-                              </div>
-                            )
+                            Header: "층",
+                            accessor: 'FLOOR'
+                        },
+                        {
+                            Header: '좌석 갯수',
+                            accessor: 'SEAT_CNT'
                         }
                     ]}
                     defaultPageSize={10}
@@ -49,6 +43,6 @@ class ManageRoomList extends Component {
         );
     }
 }
-export default connect((state) => ({data: state.people.data}), (dispatch) => ({
-    PeopleActions: bindActionCreators(people, dispatch)
+export default connect((state) => ({data: state.cinema.data}), (dispatch) => ({
+    CinemaActions: bindActionCreators(cinema, dispatch)
 }))(ManageRoomList);

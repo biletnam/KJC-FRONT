@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import "./PriceMovieScheduleRegister.css";
 import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
+import {serverUrl} from "../../../../reducers/urlUtil";
+
 class PriceMovieScheduleRegister extends Component {
     emptyInputSetting = {
         nameInput: '',
-        priceInput: ''
+        priceInput: 0
     }
     constructor(props){
         super(props);
@@ -30,7 +32,8 @@ class PriceMovieScheduleRegister extends Component {
             errorState.nameInput = true;
             noError = noError && false;
         }
-        if(!data.priceInput || data.priceInput.length < 1) {
+        if(!data.priceInput || data.priceInput.length < 1 || Number(data.priceInput.length) < 0
+          || isNaN(data.priceInput)) {
             errorState.priceInput = true;
             noError = noError && false;
         }
@@ -38,11 +41,11 @@ class PriceMovieScheduleRegister extends Component {
             this.setState({error: errorState});
             return false;
         }
-        const json = {name: this.state.nameInput};
-        axios.post('http://localhost:5000/api/genres', json).then((response) => {
+        const json = {name: this.state.nameInput, price: this.state.priceInput};
+        axios.post(`${serverUrl}/api/playType`, json).then((response) => {
             console.log(response);
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
-            alert('장르 등록에 성공하였습니다.');
+            alert('상영 종류 등록에 성공하였습니다.');
         }).catch((error) => {
             console.log(error);
         });
@@ -52,13 +55,13 @@ class PriceMovieScheduleRegister extends Component {
         return (
             <div className={'priceMovieScheduleRegisterParentDiv'}>
                 <div className={'registerTitle'}>
-                    상영 가격 등록
+                    상영 종류 등록
                 </div>
                 <div className={'registerBody'}>
                     <div>
                        <Form className="form">
                             <FormGroup row>
-                              <Label for="id" sm={3}>가격 이름</Label>
+                              <Label for="id" sm={3}>상영 종류 이름</Label>
                               <Col sm={6}>
                                 <Input type="text" name="name" value={this.state.nameInput} id="nameInput" placeholder="가격 이름" onChange={onInputChange} />
                               </Col>
@@ -70,7 +73,7 @@ class PriceMovieScheduleRegister extends Component {
                               <Label for="id" sm={3}>가격</Label>
                               <Col sm={6}>
                                  <div className="input-group input-group-sm mb-3">
-                                       <input aria-label="Small" aria-describedby="inputGroup-sizing-sm" className={'form-control'} type="number" value={this.state.priceInput} name="price" id="priceInput" onChange={onInputChange}/>
+                                       <input aria-label="Small" aria-describedby="inputGroup-sizing-sm" className={'form-control'} type="number" value={this.state.priceInput} min={0} name="price" id="priceInput" onChange={onInputChange}/>
                                                 <div className="input-group-append">
                                         <span className="input-group-text" id="inputGroup-sizing-sm">원</span>
                                       </div>

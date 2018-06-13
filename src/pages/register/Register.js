@@ -7,9 +7,9 @@ import axios from 'axios';
 
 import Swal from 'sweetalert2';
 import Modal from 'react-modal';
-import GetPostCode from "./GetPostCode";
+import GetPostCode from "../common/daumGetPost/GetPostCode";
 import { withRouter } from 'react-router-dom';
-
+import Loader from 'react-loader-spinner';
 const customStyles = {
     content : {
         top                   : '50%',
@@ -27,17 +27,18 @@ Modal.setAppElement('#root');
 class Register extends Component {
     state = {
         modalIsOpen: false,
-        postCode: '',
-        jibunAddress: '',
         nameInput: '',
         idInput: '',
         passwordInput: '',
         passwordCheckInput: '',
+        postCode: '',
+        jibunAddress: '',
         addressDetail: '',
         phoneInput: '',
         emailInput: '',
         identificationNumber: '',
         idCheckState: 'NONE',
+        registerPending: false,
         error: {passwordCheck: false}
     };
     constructor() {
@@ -45,9 +46,7 @@ class Register extends Component {
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
-    openModal() {
-        this.setState({modalIsOpen: true});
-    }
+
     onInputChange = (event) => {
         const value = event.target.value;
         const id = event.target.id;
@@ -65,7 +64,8 @@ class Register extends Component {
     closeModal() {
         this.setState({modalIsOpen: false});
     }
-    componentDidMount () {
+    openModal() {
+        this.setState({modalIsOpen: true});
     }
     getPostCode = (postData) => {
         this.setState({postCode: postData.postCode, jibunAddress: postData.jibunAddress})
@@ -95,10 +95,12 @@ class Register extends Component {
         }
         console.log(result);
         const {history} = this.props;
+        this.setState({registerPending: true});
         axios.post(urlUtil.serverUrl + '/api/customer/user', data, {header: {
             'Content-Type': 'application/json'
         }})
             .then((result) => {
+                this.setState({registerPending: false});
                 if(result.data === 'success') {
                     Swal({
                         title: '성공',
@@ -110,6 +112,7 @@ class Register extends Component {
                     })
                 }
             }).catch((error) => {
+            this.setState({registerPending: false});
             alert('실패!');
         })
     }
@@ -263,7 +266,13 @@ class Register extends Component {
                             </div>
                         </div>
                       <div className={'register-button-div'}>
-                          <button onClick={this.registerButton}>회원가입</button>
+                          {!this.state.registerPending &&<button onClick={this.registerButton}>회원가입</button>}
+                          {this.state.registerPending &&<Loader
+                              type="Puff"
+                              color="#00BFFF"
+                              height="100"
+                              width="100"
+                          />}
                       </div>
                   </div>
                 </div>

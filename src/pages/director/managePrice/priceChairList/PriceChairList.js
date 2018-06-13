@@ -2,33 +2,38 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 import './PriceChairList.css';
-import * as genres from 'reducers/genre';
-import { connect } from 'react-redux';
-import { bindActionCreators} from 'redux';
-
+import {serverUrl} from "../../../../reducers/urlUtil";
+import axios from 'axios';
 class PriceChairList extends Component {
+    state = {
+        seatType: []
+    }
     componentDidMount() {
-        const {GenresActions} = this.props;
-        GenresActions.getGenres();
+        axios.get(serverUrl + '/api/seatType')
+            .then((response) => {
+                console.log(response);
+                this.setState({seatType: response.data});
+            }).catch((error) => {
+            console.log(error);
+        });
     }
     render() {
-        const data = this.props.data.genres || [];
         return (
             <div className={'priceChairListDiv'}>
                 <ReactTable
-                    data={data}
+                    data={this.state.seatType}
                     columns={[
                         {
-                            Header: '좌석 가격 ID',
-                            accessor: 'id'
+                            Header: '좌석 종류 ID',
+                            accessor: 'SEAT_TYPE_ID'
                         },
                         {
                             Header: '이름',
-                            accessor: 'name'
+                            accessor: 'SEAT_TYPE_NAME'
                         },
                         {
                             Header: '가격',
-                            accessor: 'price'
+                            accessor: 'ADD_COST'
                         }
                     ]}
                     defaultPageSize={10}
@@ -38,6 +43,4 @@ class PriceChairList extends Component {
         );
     }
 }
-export default connect((state) => ({data: state.genres.data}), (dispatch) => ({
-    GenresActions: bindActionCreators(genres, dispatch)
-}))(PriceChairList);
+export default PriceChairList;

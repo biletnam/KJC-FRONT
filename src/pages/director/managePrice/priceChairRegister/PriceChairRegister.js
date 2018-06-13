@@ -30,7 +30,7 @@ class PriceChairRegister extends Component {
             errorState.nameInput = true;
             noError = noError && false;
         }
-        if(!data.priceInput || data.priceInput.length < 1) {
+        if(!data.priceInput || data.priceInput.length < 1 || Number(data.priceInput) < 0) {
             errorState.priceInput = true;
             noError = noError && false;
         }
@@ -38,11 +38,11 @@ class PriceChairRegister extends Component {
             this.setState({error: errorState});
             return false;
         }
-        const json = {name: this.state.nameInput};
-        axios.post('http://localhost:5000/api/genres', json).then((response) => {
+        const json = {name: this.state.nameInput, price: this.state.priceInput};
+        axios.post('http://localhost:5000/api/seatType', json).then((response) => {
             console.log(response);
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
-            alert('장르 등록에 성공하였습니다.');
+            alert('좌석 종류 등록에 성공하였습니다.');
         }).catch((error) => {
             console.log(error);
         });
@@ -52,7 +52,7 @@ class PriceChairRegister extends Component {
         return (
             <div className={'priceChairRegisterParentDiv'}>
                 <div className={'registerTitle'}>
-                    좌석 가격 등록
+                    좌석 종류 등록
                 </div>
                 <div className={'registerBody'}>
                     <div>
@@ -70,7 +70,7 @@ class PriceChairRegister extends Component {
                               <Label for="id" sm={3}>가격</Label>
                               <Col sm={6}>
                                  <div className="input-group input-group-sm mb-3">
-                                       <input aria-label="Small" aria-describedby="inputGroup-sizing-sm" className={'form-control'} type="number" value={this.state.priceInput} name="price" id="priceInput" onChange={onInputChange}/>
+                                       <input aria-label="Small" aria-describedby="inputGroup-sizing-sm" className={'form-control'} min={0} type="number" value={this.state.priceInput} name="price" id="priceInput" onChange={onInputChange}/>
                                                 <div className="input-group-append">
                                         <span className="input-group-text" id="inputGroup-sizing-sm">원</span>
                                       </div>

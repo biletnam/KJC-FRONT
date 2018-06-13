@@ -1,0 +1,44 @@
+.branch-register-parent-div {
+    margin-top: 30px;
+    width: 1000px;
+    background-color: #ffffff;
+    display: inline-block;
+    border-radius: 10px;
+}
+.branch-register-parent-div .registerTitle {
+    padding: 10px;
+    background-color: #fa5252;
+    font-weight: 900;
+    font-size: 20px;
+    color: #ffffff;
+}
+.branch-register-parent-div .registerBody {
+    padding: 20px;
+}
+.branch-register-parent-div .registerBody .col-form-label{
+    font-weight: 900;
+}
+.branch-register-parent-div .registerBody .registerButton button{
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: 20px;
+}
+.branch-register-parent-div .error {
+    color: red !important;
+}
+.branch-register-parent-div .postCodeDiv{
+    display: flex;
+}
+.branch-register-parent-div .postCodeDiv input{
+    flex: 1;
+}
+.branch-register-parent-div .postCodeDiv button{
+
+}
+@media (max-width: 1000px) {
+    .branch-register-parent-div {
+        width: 100%;
+    }
+}

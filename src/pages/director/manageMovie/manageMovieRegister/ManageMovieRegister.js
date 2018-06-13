@@ -21,8 +21,8 @@ class ManageMovieRegister extends Component {
         distInput: ''
     }
     genres = [
-        {id: 1, name: '유머'}, {id:2, name: '코미디'}, {id: 3, name: '로맨스'},
-        {id: 4, name: '공포'}, {id:5, name: '역사'}, {id:6, name: '액션'}
+        {id: 1, name: '유머'}, {id: 2, name: '로맨스'},
+        {id: 3, name: '공포'}, {id:4, name: '역사'}, {id:5, name: '액션'}
     ]
     constructor(props){
         super(props);

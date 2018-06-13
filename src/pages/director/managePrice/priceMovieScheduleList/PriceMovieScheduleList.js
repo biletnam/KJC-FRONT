@@ -2,33 +2,40 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 import './PriceMovieScheduleList.css';
-import * as genres from 'reducers/genre';
-import { connect } from 'react-redux';
-import { bindActionCreators} from 'redux';
+import axios from 'axios';
+import {serverUrl} from "../../../../reducers/urlUtil";
 
 class PriceMovieScheduleList extends Component {
+    state = {
+        seatType: []
+    }
     componentDidMount() {
-        const {GenresActions} = this.props;
-        GenresActions.getGenres();
+        axios.get(serverUrl + '/api/playType')
+            .then((response) => {
+                console.log(response);
+
+                this.setState({seatType: response.data.sort((pt, pt2) => (Number(pt.PT_ID) - Number(pt2.PT_ID)))});
+            }).catch((error) => {
+            console.log(error);
+        });
     }
     render() {
-        const data = this.props.data.genres || [];
         return (
             <div className={'priceMovieScheduleListDiv'}>
                 <ReactTable
-                    data={data}
+                    data={this.state.seatType}
                     columns={[
                         {
-                            Header: '상영 가격 ID',
-                            accessor: 'id'
+                            Header: '상영 종류 ID',
+                            accessor: 'PT_ID'
                         },
                         {
                             Header: '이름',
-                            accessor: 'name'
+                            accessor: 'PT_NAME'
                         },
                         {
                             Header: '가격',
-                            accessor: 'price'
+                            accessor: 'PT_PRICE'
                         }
                     ]}
                     defaultPageSize={10}
@@ -38,6 +45,4 @@ class PriceMovieScheduleList extends Component {
         );
     }
 }
-export default connect((state) => ({data: state.genres.data}), (dispatch) => ({
-    GenresActions: bindActionCreators(genres, dispatch)
-}))(PriceMovieScheduleList);
+export default PriceMovieScheduleList;
