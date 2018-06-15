@@ -36,7 +36,9 @@ class ManageGenreRegister extends Component {
             return false;
         }
         const json = {name: this.state.nameInput};
-        axios.post(`${serverUrl}/api/genres`, json).then((response) => {
+
+        const token = sessionStorage.getItem('kjc_token');
+        axios.post(`${serverUrl}/api/genres`, json, {headers: {'x-access-token': token}}).then((response) => {
             console.log(response);
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
             alert('장르 등록에 성공하였습니다.');

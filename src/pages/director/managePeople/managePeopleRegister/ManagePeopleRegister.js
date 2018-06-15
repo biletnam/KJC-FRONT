@@ -59,14 +59,20 @@ class ManagePeopleRegister extends Component {
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
+
+
+
+        const token = sessionStorage.getItem('kjc_token');
         axios.post(`${serverUrl}/api/people`, formData, { headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'x-access-token': token
         }}).then((response) => {
             console.log(response);
             this.fileInput.value = '';
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
             alert('인물 등록에 성공하였습니다.');
         }).catch((error) => {
+            alert('인물 등록에 실패하였습니다.');
             console.log(error);
         });
     }

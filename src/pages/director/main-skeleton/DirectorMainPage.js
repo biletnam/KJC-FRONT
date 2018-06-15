@@ -6,6 +6,7 @@ import {Home, Reserve} from "pages";
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as windowSizeAction from 'reducers/windowSize';
+import * as login from 'reducers/user/login';
 import ManageMovie from "../manageMovie/ManageMovie";
 import ManagePeopleMain from "../managePeople/ManagePeopleMain";
 import ManageGenreMain from "../manageGenre/ManageGenreMain";
@@ -23,8 +24,23 @@ class DirectorMainPage extends Component {
         }
     }
     componentDidMount() {
+        const {LoginActions, history} = this.props;
         this.alarmHeaderSize();
         window.addEventListener("resize", this.alarmHeaderSize);
+        LoginActions.loginCheck()
+            .then((data) => {
+                LoginActions.getLoginUserInformation()
+                    .then((userInformation) => {
+                        if(userInformation.IS_USER !== 'D') {
+                            history.push('/');
+                            alert('관리자 계정만 접속할 수 있습니다.');
+                        }
+                    }).catch((error) => {history.push('/')});
+            }).catch((error) => {
+            history.push('/');
+            alert('로그인이 필요한 페이지입니다.');
+            console.log(error);
+        });
     }
     componentWillUnmount() {
         window.removeEventListener('resize', this.alarmHeaderSize);
@@ -51,5 +67,6 @@ class DirectorMainPage extends Component {
     }
 }
 export default withRouter(connect((state) => ({header: state.windowSize.header, isOpen: state.windowSize.isOpen}), (dispatch) => ({
-    WindowSizeActions : bindActionCreators(windowSizeAction,dispatch)
+    WindowSizeActions : bindActionCreators(windowSizeAction,dispatch),
+    LoginActions: bindActionCreators(login, dispatch)
 }))(DirectorMainPage));

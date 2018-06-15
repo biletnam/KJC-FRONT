@@ -100,14 +100,17 @@ class ManageRoomRegister extends Component {
             return false;
         }
         this.setState({registerPending: true});
+        const token = sessionStorage.getItem('kjc_token');
         axios.post(`${serverUrl}/api/cinema`, data, { headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'x-access-token': token
         }}).then((response) => {
             console.log(response);
             this.setState({registerPending: false});
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
             alert('상영관 등록에 성공하였습니다.');
         }).catch((error) => {
+            alert('상영관 등록에 실패하였습니다.' + error);
             this.setState({registerPending: false});
             console.log(error);
         });

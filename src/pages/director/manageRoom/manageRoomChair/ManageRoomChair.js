@@ -8,10 +8,11 @@ import {bindActionCreators} from 'redux';
 import * as seat from 'reducers/seat';
 import * as seatType from 'reducers/seatType';
 import axios from 'axios';
+import Loader from 'react-loader-spinner';
 import {serverUrl} from "../../../../reducers/urlUtil";
 
 class ManageRoomChair extends Component {
-    state = {branchId: null, cinemaNo: null, selectedChair: [], seatTypeId: null}
+    state = {branchId: null, cinemaNo: null, selectedChair: [], seatTypeId: null, chairPending: false}
     componentDidMount() {
         const {SeatTypeActions} = this.props;
         SeatTypeActions.getSeatType();
@@ -71,11 +72,17 @@ class ManageRoomChair extends Component {
             cinemaNumber: cinemaNo,
             seatTypeId: seatTypeId
         }
+        this.setState({chairPending: true});
+        const token = sessionStorage.getItem('kjc_token');
         axios.put(serverUrl + '/api/seats/seatType', data, { headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'x-access-token': token
         }}).then((result) => {
+            this.setState({chairPending: false});
             alert('좌석 종류 등록이 완료됐습니다.')
         }).catch((error) => {
+            this.setState({chairPending: false});
+            alert('좌석 종류 등록에 실패하였습니다.');
             console.log(error);
         })
     }
@@ -107,7 +114,13 @@ class ManageRoomChair extends Component {
                     {!seatTypePending && <ManageRoomChairPriceSelect seatType = {seatType} onSeatTypeChange={this.onSeatTypeChange}/>}
                 </div>
                 <div className={'chairPriceButton'}>
-                    <button onClick={this.onSubmit}>등록</button>
+                    {!this.state.chairPending &&    <button onClick={this.onSubmit}>등록</button>}
+                    {this.state.chairPending &&  <Loader
+                        type="Circles"
+                        color="crimson"
+                        height="100"
+                        width="100"
+                    />}
                 </div>
             </div>
         </div>)

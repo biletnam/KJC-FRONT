@@ -40,11 +40,14 @@ class PriceChairRegister extends Component {
             return false;
         }
         const json = {name: this.state.nameInput, price: this.state.priceInput};
-        axios.post(`${serverUrl}/api/seatType`, json).then((response) => {
+        const token = sessionStorage.getItem('kjc_token');
+
+        axios.post(`${serverUrl}/api/seatType`, json, {headers: {'x-access-token': token}}).then((response) => {
             console.log(response);
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
             alert('좌석 종류 등록에 성공하였습니다.');
         }).catch((error) => {
+            alert('좌석 종류 등록에 실패하였습니다.');
             console.log(error);
         });
     }

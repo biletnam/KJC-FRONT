@@ -34,13 +34,22 @@ class UserLogin extends Component {
         this.setState({loading: true});
         axios.post(serverUrl + '/api/login', {id: id, password: password}, {header: {'Content-Type': 'application/json'}})
             .then((result) => {
-                this.setState({loading: false});
                 const token = result.data.token;
                 console.log('success');
                 sessionStorage.setItem('kjc_token', token);
                 LoginActions.loginSuccess();
-                LoginActions.getLoginUserInformation();
-                history.push('/');
+                LoginActions.getLoginUserInformation()
+                    .then((data) => {
+                        this.setState({loading: false});
+                        if(data.IS_USER === 'D') {
+                            history.push('/director');
+                        }else {
+                            history.push('/');
+                        }
+                    }).catch((error) => {
+                    this.setState({loading: false});
+                    alert('회원 정보를 가져오는 도중 문제가 발생하였습니다.');
+                })
             })
             .catch((error)=> {
             console.log('error');

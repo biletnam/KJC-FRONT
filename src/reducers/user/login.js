@@ -23,12 +23,18 @@ function postLoginAPI(id, password) {
 export const getLoginUserInformation = () => dispatch => {
     const token = sessionStorage.getItem('kjc_token');
     dispatch({type: LOGIN_INFO_PENDING});
-    axios.get(serverUrl + '/api/login/info', {headers: {'x-access-token': token}})
-        .then((response) =>  {console.log(response); dispatch({type: LOGIN_INFO_SUCCESS, payload: response})})
-        .catch((error) => {
-            console.log(error);
-            dispatch({type: LOGIN_INFO_FAIL});
+    return new Promise((resolve, reject) => {
+        axios.get(serverUrl + '/api/login/info', {headers: {'x-access-token': token}})
+            .then((response) =>  {console.log(response);
+            dispatch({type: LOGIN_INFO_SUCCESS, payload: response});
+            resolve(response.data);
         })
+            .catch((error) => {
+                console.log(error);
+                dispatch({type: LOGIN_INFO_FAIL});
+                reject(error);
+            })
+    })
 }
 
 export const loginCheck = () => dispatch => {

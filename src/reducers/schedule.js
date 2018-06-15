@@ -21,16 +21,19 @@ const getAllScheduleAPI = () => {
     return axios.get(serverUrl + '/api/schedule');
 }
 const updateScheduleToPublic = (scheduleId) => {
-    return axios.put(serverUrl + `/api/schedule/public/${scheduleId}`);
+    const token = sessionStorage.getItem('kjc_token');
+    return axios.put(serverUrl + `/api/schedule/public/${scheduleId}`, null,{headers: {'x-access-token': token}});
 }
 const deleteScheduleAPI = (scheduleId) => {
-    return axios.delete(serverUrl + `/api/schedule/${scheduleId}`);
+    const token = sessionStorage.getItem('kjc_token');
+    return axios.delete(serverUrl + `/api/schedule/${scheduleId}`, {headers: {'x-access-token': token}});
 }
 const getMoviePublicScheduleByDueDateAPI = (movieId, due) => {
     return axios.get(serverUrl + `/api/schedule/movie/${movieId}/due/${due}`);
 }
 const putSellRateAPI = (scheduleId) => {
-    return axios.put(serverUrl + `/api/schedule/sellRate/${scheduleId}`);
+    const token = sessionStorage.getItem('kjc_token');
+    return axios.put(serverUrl + `/api/schedule/sellRate/${scheduleId}`,null,{headers: {'x-access-token': token}});
 
 }
 export const getMovieScheduleBetweenDate = (movieId, date1, date2) => dispatch => {

@@ -88,7 +88,8 @@ class ManageMovieScheduleRegister extends Component {
             return false;
         }
         this.setState({schedulePostPending: true});
-        axios.post(serverUrl + '/api/schedule', object, {headers: { 'Content-Type': 'application/json'}})
+        const token = sessionStorage.getItem('kjc_token');
+        axios.post(serverUrl + '/api/schedule', object, {headers: { 'Content-Type': 'application/json', 'x-access-token': token}})
             .then((response) => {
                 this.setState({schedulePostPending: false});
                 alert('상영일정 등록이 완료됐습니다.')}

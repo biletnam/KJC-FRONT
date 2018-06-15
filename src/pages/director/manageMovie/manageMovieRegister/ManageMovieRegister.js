@@ -72,8 +72,10 @@ class ManageMovieRegister extends Component {
                 formData.append('genre[]', g.name);
             });
         }
+        const token = sessionStorage.getItem('kjc_token');
         axios.post(`${serverUrl}/api/movies`, formData, {header: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'x-access-token': token
         }}).then((response) => {
             this.fileInput.value = '';
             this.setState({inputs: this.initialInput, selectedGenres: [], people: []});

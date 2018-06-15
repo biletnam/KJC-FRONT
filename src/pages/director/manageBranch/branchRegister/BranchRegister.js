@@ -77,7 +77,9 @@ class BranchRegister extends Component {
         const json = {name: this.state.nameInput, zipCode: this.state.postCode,
             address: this.state.jibunAddress, address_detail: this.state.addressDetail};
         console.log(json);
-        axios.post(`${serverUrl}/api/branch`, json).then((response) => {
+
+        const token = sessionStorage.getItem('kjc_token');
+        axios.post(`${serverUrl}/api/branch`, json, {headers: {'x-access-token': token}}).then((response) => {
             console.log(response);
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
             alert('지점 등록에 성공하였습니다.');
