@@ -5,7 +5,7 @@ import axios from 'axios';
 import ChairRegister from "./chairRegister/ChairRegister";
 import ChairRegisterShow from "./chairRegisterShow/ChairRegisterShow";
 import {serverUrl} from "../../../../reducers/urlUtil";
-
+import Loader from 'react-loader-spinner';
 class ManageRoomRegister extends Component {
     emptyInputSetting = {
         cinemaNumberInput: 1,
@@ -26,6 +26,7 @@ class ManageRoomRegister extends Component {
             seatType: [],
             rowNum: 0,
             rows: [],
+            registerPending: false,
             ...this.loadingSetting,
             ...this.emptyInputSetting,
         }
@@ -98,13 +99,16 @@ class ManageRoomRegister extends Component {
         if(this.validateInput(data)) {
             return false;
         }
+        this.setState({registerPending: true});
         axios.post(`${serverUrl}/api/cinema`, data, { headers: {
             'Content-Type': 'application/json'
         }}).then((response) => {
             console.log(response);
+            this.setState({registerPending: false});
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
             alert('상영관 등록에 성공하였습니다.');
         }).catch((error) => {
+            this.setState({registerPending: false});
             console.log(error);
         });
     }
@@ -214,7 +218,13 @@ class ManageRoomRegister extends Component {
                         </Form>
                     </div>
                     <div className={'registerButton'}>
-                        <button onClick = {onSubmitButton}>등록</button>
+                        {this.state.registerPending && <Loader
+                            type="Circles"
+                            color="crimson"
+                            height="100"
+                            width="100"
+                        />}
+                        {!this.state.registerPending && <button onClick = {onSubmitButton}>등록</button>}
                     </div>
                 </div>
             </div>

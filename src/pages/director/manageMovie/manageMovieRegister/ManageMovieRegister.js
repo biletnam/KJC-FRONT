@@ -19,7 +19,8 @@ class ManageMovieRegister extends Component {
         informationInput: '',
         runningTimeInput: 0,
         rateInput: 0,
-        distInput: ''
+        distInput: '',
+        videoAddrInput: ''
     }
     genres = [
         {id: 1, name: '유머'}, {id: 2, name: '로맨스'},
@@ -60,6 +61,7 @@ class ManageMovieRegister extends Component {
         formData.append('dist', inputs.distInput);
         formData.append('runningTime', inputs.runningTimeInput);
         formData.append('rate', inputs.rateInput);
+        formData.append('videoAddr', inputs.videoAddrInput);
         if(this.state.people.length > 0) {
            this.state.people.map((p) => {
                 formData.append('people[]', JSON.stringify(p));
@@ -252,6 +254,17 @@ class ManageMovieRegister extends Component {
                                                 <div className="input-group-append">
                                         <span className="input-group-text" id="inputGroup-sizing-sm">분</span>
                                       </div>
+                                  </div>
+                              </Col>
+                              <Col sm={3}>
+                                    {this.state.error.runningTimeInput && <p>러닝 타임은 1분 이상이어야 합니다.</p>}
+                              </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                              <Label for="password" sm={3}>영상 주소</Label>
+                              <Col sm={4}>
+                                  <div className="input-group input-group-sm mb-3">
+                                     <Input type="text" value={this.state.inputs.videoAddrInput} name="dist" id="videoAddrInput" placeholder="영상 주소" onChange={onInputChange} />
                                   </div>
                               </Col>
                               <Col sm={3}>

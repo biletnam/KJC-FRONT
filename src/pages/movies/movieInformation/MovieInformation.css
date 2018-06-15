@@ -5,6 +5,7 @@
 .movie-information-close .movie-info-title{
     font-weight: 900;
     font-size: 35px;
+    margin-left: 12px;
 }
 .movie-information-close button {
     float: right;
@@ -13,13 +14,38 @@
     border: none;
 }
 .movie-information-body {
-    margin-top: 10px;
     padding: 10px;
+    margin: 20px;
 }
 .movie-information-body .movie-info-1 {
     display: flex;
+    justify-content: center;
 }
 .movie-information-body .movie-info-1 .movie-info-img {
-    width: 100px;
-    height: 150px;
+    width: 250px;
+    height: 300px;
+}
+.movie-information-body .movie-info-1 .movie-info {
+    margin-left: 20px;
+    flex: 0.8;
+}
+.movie-info-table {
+    height: 100%;
+}
+
+.movie-information-body .movie-info-1 .movie-info .movie-info-th {
+    background: #495057;
+    color: #fafafa;
+    vertical-align: middle;
+}
+.movie-information-body .movie-info-youtube {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+    position: relative;
+}
+.movie-information-body td p {
+    padding: 0;
+    margin: 0;
 }
