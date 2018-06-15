@@ -6,12 +6,7 @@ import {
     NavbarToggler,
     NavbarBrand,
     Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem } from 'reactstrap';
+    NavItem} from 'reactstrap';
 import'./MenuNavBar.css';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
@@ -29,7 +24,7 @@ class MenuNavBar extends Component {
     }
 
     render() {
-        const { isOpen, isLogin } = this.props;
+        const { isOpen, isLogin, userInformation } = this.props;
         return (
             <div className="navBarDiv userPageNav">
                 <Navbar color="#ffffff" light expand="md">
@@ -44,11 +39,6 @@ class MenuNavBar extends Component {
                               </p>
                             </Link>
                       </NavItem>
-                      <NavItem>
-                        <p className="nav-p">
-                            영화관
-                        </p>
-                      </NavItem>
                         {isLogin &&
                             <React.Fragment>
                                <NavItem>
@@ -58,13 +48,13 @@ class MenuNavBar extends Component {
                                       </p>
                                     </Link>
                                </NavItem>
-                               <NavItem>
+                                {userInformation && userInformation.IS_USER === 'Y' && <NavItem>
                                     <Link to={'/userInfo'} style={{textDecoration: 'none', color: 'black'}}>
                                       <p className="nav-p">
                                            회원 정보
                                       </p>
                                     </Link>
-                                </NavItem>
+                                </NavItem>}
                             </React.Fragment>
                         }
                       <NavItem>

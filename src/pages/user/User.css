@@ -1,21 +1,26 @@
-.user-information-parent-div {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 800px;
-    display: inline-block;
-    background-color: #ffffff;
+.user-information-parent-title ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
-.user-information-body {
-    padding: 10px;
+
+.user-information-parent-title li {
+    float: left;
 }
-.user-information-title{
-    width: 100%;
-    background: #fa5252;
-    padding: 10px;
-    text-align: left;
-    font-weight: 900;
-    font-size: 20px;
-    color: #f8f9fa;
+
+.user-information-parent-title li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.user-information-parent-title li a:hover {
+    background-color: #111;
 }
 @media (max-width: 800px) {
     .user-information-parent-div{

@@ -1,0 +1,32 @@
+.user-information-parent-div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 800px;
+    display: inline-block;
+    background-color: #ffffff;
+}
+.user-information-body {
+    border: 5px solid #bababa;
+    padding: 30px;
+}
+.user-information-title{
+    width: 100%;
+    background: #fa5252;
+    padding: 10px;
+    text-align: left;
+    font-weight: 900;
+    font-size: 20px;
+    color: #f8f9fa;
+}
+.user-information-body p {
+    font-weight: 900;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    align-items: left;
+    width: fit-content;
+    margin-bottom: 3px;
+}
+.user-information-button {
+    margin: 0 5px;
+}

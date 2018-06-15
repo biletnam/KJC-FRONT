@@ -14,6 +14,8 @@ import bookSeat from './bookSeat';
 import ticket from './ticket';
 import payMethod from './payMethod';
 import discount from './discount';
+import payHistory from './payHistory';
+import customer from './user/customer';
 export default combineReducers({
     windowSize,
     movies,
@@ -29,5 +31,7 @@ export default combineReducers({
     bookSeat,
     ticket,
     payMethod,
-    discount
+    discount,
+    payHistory,
+    customer
 });

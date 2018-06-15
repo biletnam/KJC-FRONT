@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 import './ManageMemberList.css';
-import * as genres from 'reducers/genre';
+import * as customer from 'reducers/user/customer';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 
 class ManageMemberList extends Component {
     componentDidMount() {
-        const {GenresActions} = this.props;
-        GenresActions.getGenres();
+        const {CustomerActions} = this.props;
+        CustomerActions.getUsers();
     }
     render() {
-        const data = this.props.data.genres || [];
+        const data = this.props.data.customer || [];
         return (
             <div className={'manageMemberListDiv'}>
                 <ReactTable
@@ -20,19 +20,19 @@ class ManageMemberList extends Component {
                     columns={[
                         {
                             Header: '회원 ID',
-                            accessor: 'id'
+                            accessor: 'USER_ID'
                         },
                         {
-                            Header: '회원 이름',
-                            accessor: 'name'
+                            Header: '포인트',
+                            accessor: 'POINT'
                         },
                         {
                             Header: '주소',
-                            accessor: 'address'
+                            accessor: 'ADDR'
                         },
                         {
-                            Header: '전화번호',
-                            accessor: 'phone'
+                            Header: '이메일',
+                            accessor: 'EMAIL'
                         }
                     ]}
                     defaultPageSize={10}
@@ -42,6 +42,6 @@ class ManageMemberList extends Component {
         );
     }
 }
-export default connect((state) => ({data: state.genres.data}), (dispatch) => ({
-    GenresActions: bindActionCreators(genres, dispatch)
+export default connect((state) => ({data: state.customer.data}), (dispatch) => ({
+    CustomerActions: bindActionCreators(customer, dispatch)
 }))(ManageMemberList);

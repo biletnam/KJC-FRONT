@@ -8,7 +8,7 @@ class  MovieFrame extends Component {
         return JSON.stringify(nextProps.movie) !== JSON.stringify(this.props.movie);
     }
     render() {
-        const {movie, selectMovie, history} = this.props;
+        const {movie, selectMovie, selectMovieInfo, history} = this.props;
         return (
             <div className = "movieFrame">
             <div className="image">
@@ -18,7 +18,7 @@ class  MovieFrame extends Component {
                 {movie.MOVIE_NAME}
             </div>
             <div className="buttons">
-                <button>정보</button>
+                <button onClick={() => {selectMovieInfo(movie)}}>정보</button>
                 <button onClick={() => {selectMovie(movie)}}>예매하기</button>
             </div>
         </div>

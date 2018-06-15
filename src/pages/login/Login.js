@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css'
 import classnames from 'classnames';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import UserLogin from "./UserLogin";
 import NonUserLogin from "./NonUserLogin";
 class Login extends Component {

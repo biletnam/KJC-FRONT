@@ -4,6 +4,7 @@ import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
 import Modal from 'react-modal';
 import GetPostCode from "../../../common/daumGetPost/GetPostCode";
+import {serverUrl} from "../../../../reducers/urlUtil";
 
 const customStyles = {
     content : {
@@ -76,7 +77,7 @@ class BranchRegister extends Component {
         const json = {name: this.state.nameInput, zipCode: this.state.postCode,
             address: this.state.jibunAddress, address_detail: this.state.addressDetail};
         console.log(json);
-        axios.post('http://localhost:5000/api/branch', json).then((response) => {
+        axios.post(`${serverUrl}/api/branch`, json).then((response) => {
             console.log(response);
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
             alert('지점 등록에 성공하였습니다.');

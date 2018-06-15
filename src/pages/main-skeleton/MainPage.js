@@ -29,7 +29,12 @@ class MainPage extends Component {
     }
     componentWillMount() {
         const {LoginActions} = this.props;
-        LoginActions.loginCheck();
+        LoginActions.loginCheck()
+            .then((data) => {
+                LoginActions.getLoginUserInformation();
+            }).catch((error) => {
+            console.log(error);
+        });
     }
     componentDidMount() {
         const store = this.props.store;
@@ -49,7 +54,7 @@ class MainPage extends Component {
         const {checkLoginPending} = this.props.loginData;
         return (!checkLoginPending && <div className = "mainParentDiv" id= 'mainParentDiv'>
             <div className="mainMenuBar">
-                <MenuNavBar onToggle = {this.alarmHeaderSize} isLogin = {loginData.login}/>
+                <MenuNavBar onToggle = {this.alarmHeaderSize} isLogin = {loginData.login} userInformation = {loginData.userInformation}/>
             </div>
             <div className = "mainBody" style={{position: 'absolute', top: header, width: '100%', minHeight: '100%'}}>
                 <Switch>

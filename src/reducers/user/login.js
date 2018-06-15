@@ -8,7 +8,9 @@ const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_POST_FAIL = 'LOGIN_POST_FAIL';
 const USER_LOGOUT = 'USER_LOGOUT';
 const USER_FAIL = 'USER_FAIL';
-const USER_INFO_SUCCESS = 'USER_INFO_SUCCESS';
+const LOGIN_INFO_PENDING = 'LOGIN_INFO_PENDING';
+const LOGIN_INFO_FAIL = 'LOGIN_INFO_FAIL';
+const LOGIN_INFO_SUCCESS = 'LOGIN_INFO_SUCCESS';
 const CHECK_LOGIN_PENDING = 'CHECK_LOGIN_PENDING';
 const CHECK_LOGIN_FAIL = 'CHECK_LOGIN_FAIL';
 
@@ -17,15 +19,31 @@ function postLoginAPI(id, password) {
         'Content-Type': 'application/json'
     }});
 }
+
+export const getLoginUserInformation = () => dispatch => {
+    const token = sessionStorage.getItem('kjc_token');
+    dispatch({type: LOGIN_INFO_PENDING});
+    axios.get(serverUrl + '/api/login/info', {headers: {'x-access-token': token}})
+        .then((response) =>  {console.log(response); dispatch({type: LOGIN_INFO_SUCCESS, payload: response})})
+        .catch((error) => {
+            console.log(error);
+            dispatch({type: LOGIN_INFO_FAIL});
+        })
+}
+
 export const loginCheck = () => dispatch => {
     dispatch({type: CHECK_LOGIN_PENDING});
-    checkLogin().then((data) => {
-        console.log('loginSuccess', data);
-        dispatch({type:LOGIN_SUCCESS});
-    }).catch((error) => {if(error === 'noToken') {
-        dispatch({type:CHECK_LOGIN_FAIL})
-        return false;
-    }});
+    return new Promise((resolve, reject) => {
+        checkLogin().then((data) => {
+            console.log('loginSuccess', data);
+            dispatch({type:LOGIN_SUCCESS});
+            resolve('success');
+        }).catch((error) => {if(error === 'noToken') {
+            dispatch({type:CHECK_LOGIN_FAIL});
+            reject(error);
+            return false;
+        }});
+    })
 }
 
 export const postLogin = (id, password) => dispatch => {
@@ -36,19 +54,31 @@ export const postLogin = (id, password) => dispatch => {
         dispatch({type: LOGIN_POST_FAIL, payload: error});
     })
 }
+const postNonUserLoginAPI = (name, phone) => {
+    return axios.post(serverUrl + '/api/login/nonUser', {name: name, phone: phone}, { headers: {
+        'Content-Type': 'application/json'
+    }});
+}
+export const postNonUserLogin = (name, phone) => dispatch => {
+    dispatch({type: LOGIN_POST_PENDING});
+    return new Promise((resolve, reject) => {
+        postNonUserLoginAPI(name,phone).then((response) => {
+            const token = response.data.token;
+            sessionStorage.setItem('kjc_token', token);
+            dispatch({type: LOGIN_SUCCESS, payload: response});
+            resolve('success');
+        }).catch((error) => {
+            dispatch({type: LOGIN_POST_FAIL, payload: error});
+            reject(error);
+        })
+    })
+}
 export const logOut = (history) => dispatch => {
     sessionStorage.removeItem('kjc_token');
     dispatch({type: USER_LOGOUT});
     history.push('/');
 }
-export const getLoginUserInformation = () => dispatch => {
-    const token = sessionStorage.getItem('kjc_token');
-    axios.get(serverUrl + '/api/login/info', {headers: {'x-access-token': token}})
-        .then((response) =>  {console.log(response); dispatch({type: USER_INFO_SUCCESS, payload: response})})
-        .catch((error) => {
-            console.log(error);
-        })
-}
+
 export const loginSuccess = () => dispatch => {
     dispatch({type:LOGIN_SUCCESS});
 }
@@ -58,6 +88,7 @@ const initialState = {
     error: false,
     pending: false,
     checkPending: false,
+    getInfoPending: false,
     userInformation: {}
 }
 
@@ -91,13 +122,17 @@ export default handleActions({
             login: false
         }
     },
-    [USER_INFO_SUCCESS]: (state, action) => {
+    [LOGIN_INFO_PENDING]: (state, action) => {return {...state, getInfoPending: true, error: false}},
+    [LOGIN_INFO_SUCCESS]: (state, action) => {
         console.log(action);
         return {
             ...state,
+            getInfoPending: false,
+            error: false,
             userInformation: action.payload.data
         }
     },
+    [LOGIN_INFO_FAIL]: (state,action) => {return {...state, getInfoPending: false, error: true}},
     [CHECK_LOGIN_PENDING]: (state, action) => {
         return {
             ...state,

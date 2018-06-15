@@ -6,6 +6,7 @@ import MaskedInput from 'react-text-mask';
 import { connect } from 'react-redux';
 import * as movies from 'reducers/movies';
 import { bindActionCreators} from 'redux';
+import {serverUrl} from "../../../../reducers/urlUtil";
 class ManagePeopleRegister extends Component {
     fileInput;
     emptyInputSetting = {
@@ -58,7 +59,7 @@ class ManagePeopleRegister extends Component {
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
-        axios.post('http://localhost:5000/api/people', formData, { headers: {
+        axios.post(`${serverUrl}/api/people`, formData, { headers: {
             'Content-Type': 'multipart/form-data'
         }}).then((response) => {
             console.log(response);

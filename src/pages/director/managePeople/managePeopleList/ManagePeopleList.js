@@ -5,6 +5,7 @@ import './ManagePeopleList.css';
 import * as people from 'reducers/people'
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
+import {serverUrl} from "../../../../reducers/urlUtil";
 class ManagePeopleList extends Component {
     componentDidMount() {
         const {PeopleActions} = this.props;
@@ -41,7 +42,7 @@ class ManagePeopleList extends Component {
                                         backgroundColor: '#dadada',
                                         borderRadius: '2px'
                                     }}>
-                                    <img src ={'http://localhost:5000/' + row.value} style={{width: '100px', height: '100px'}}/>
+                                    <img src ={`${serverUrl}/` + row.value} style={{width: '100px', height: '100px'}}/>
                               </div>
                                                 )
                         }

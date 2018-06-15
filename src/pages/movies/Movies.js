@@ -7,7 +7,9 @@ import MovieFrame from "./MovieFrame";
 import './Movies.css';
 import ReserveMovieDetail from "../reserve/rserveMovieDetail/ReserveMovieDetail";
 import Modal from 'react-modal';
+import Loader from 'react-loader-spinner';
 import {withRouter} from 'react-router-dom';
+import MovieInformation from "./movieInformation/MovieInformation";
 const customStyles = {
     content : {
         top                   : '50%',
@@ -28,6 +30,7 @@ Modal.setAppElement('#root')
 class Movies extends Component {
     state = {
         modalIsOpen: false,
+        movieInfoOpen: false,
         selectedMovie: null
     }
     componentDidMount() {
@@ -41,6 +44,12 @@ class Movies extends Component {
     closeModal = () => {
         this.setState({modalIsOpen: false});
     }
+    openMovieInfo = () => {
+        this.setState({movieInfoOpen: true});
+    }
+    closeMovieInfo = () => {
+        this.setState({movieInfoOpen: false});
+    }
     selectMovie = (movie) => {
         const login = this.props.login.login;
         if(!login) {
@@ -51,6 +60,12 @@ class Movies extends Component {
         this.setState({selectedMovie: movie}, () => {
             console.log(movie);
             this.openModal();
+        })
+    }
+    selectMovieInfo = (movie) => {
+        this.setState({selectedMovie: movie}, () => {
+            console.log(movie);
+            this.openMovieInfo();
         })
     }
     render() {
@@ -65,18 +80,29 @@ class Movies extends Component {
             <div>
                 <div className="page-title">영화</div>
                 <div className = "movieParentDiv">
-                    {moviePending && <p>영화를 불러오는 중입니다...</p>}
+                    {moviePending &&      <Loader
+                        type="Circles"
+                        color="crimson"
+                        height="100"
+                        width="100"
+                    />}
                     {!moviePending &&  !branchPending && <div>
-                        {movies.map((movie) => <MovieFrame movie = {movie} selectMovie = {this.selectMovie}  key={movie.MOVIE_ID}/>)}
+                        {movies.map((movie) => <MovieFrame movie = {movie} selectMovie = {this.selectMovie} selectMovieInfo = {this.selectMovieInfo} key={movie.MOVIE_ID}/>)}
                     </div>}
                 </div>
                         <Modal
                             isOpen={this.state.modalIsOpen}
                             onRequestClose={this.closeModal}
                             style={customStyles}
-                            contentLabel="Example Modal"
-                        >
+                            contentLabel="Example Modal">
                          <ReserveMovieDetail onCloseModal = {this.closeModal} selectedMovie = {this.state.selectedMovie} branch = {branch}/>
+                        </Modal>
+                        <Modal
+                            isOpen={this.state.movieInfoOpen}
+                            onRequestClose={this.closeMovieInfo}
+                            style={customStyles}
+                            contentLabel={'for movie info'}>
+                            <MovieInformation onCloseModal={this.closeMovieInfo} selectedMovie = {this.state.selectedMovie}/>
                         </Modal>
             </div>
         )

@@ -1,0 +1,20 @@
+.pay-information-title {
+    width: 100%;
+    background: #fa5252;
+    padding: 10px;
+    text-align: left;
+    font-weight: 900;
+    font-size: 20px;
+    color: #f8f9fa;
+}
+.pay-information-list-body {
+    width: 1000px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+@media (max-width: 1000px) {
+    .pay-information-list-body {
+        width: 100%;
+    }
+}

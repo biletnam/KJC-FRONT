@@ -39,6 +39,7 @@ class UserLogin extends Component {
                 console.log('success');
                 sessionStorage.setItem('kjc_token', token);
                 LoginActions.loginSuccess();
+                LoginActions.getLoginUserInformation();
                 history.push('/');
             })
             .catch((error)=> {

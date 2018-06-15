@@ -5,6 +5,7 @@ import './ManageMovieList.css';
 import * as movies from 'reducers/movies';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
+import {serverUrl} from "../../../../reducers/urlUtil";
 
 class ManageMovieList extends Component {
     componentDidMount() {
@@ -75,7 +76,7 @@ class ManageMovieList extends Component {
                                         backgroundColor: '#dadada',
                                         borderRadius: '2px'
                                     }}>
-                                    <img src ={'http://localhost:5000/' + row.value} style={{width: '100px', height: '100px'}}/>
+                                    <img src ={`${serverUrl}/` + row.value} style={{width: '100px', height: '100px'}}/>
                               </div>
                             )
                         },

@@ -26,9 +26,21 @@ const updateScheduleToPublic = (scheduleId) => {
 const deleteScheduleAPI = (scheduleId) => {
     return axios.delete(serverUrl + `/api/schedule/${scheduleId}`);
 }
+const getMoviePublicScheduleByDueDateAPI = (movieId, due) => {
+    return axios.get(serverUrl + `/api/schedule/movie/${movieId}/due/${due}`);
+}
 export const getMovieScheduleBetweenDate = (movieId, date1, date2) => dispatch => {
     dispatch({type: SCHEDULE_GET_PENDING});
     getMovieScheduleBetweenDateAPI(movieId, date1, date2)
+        .then((response) => {
+            dispatch({type: SCHEDULE_GET_SUCCESS, payload: response});
+        }).catch((error) => {
+        dispatch({type: SCHEDULE_GET_FAIL});
+    })
+}
+export const getMoviePublicScheduleByDueDate = (movieId, due) => dispatch => {
+    dispatch({type: SCHEDULE_GET_PENDING});
+    getMoviePublicScheduleByDueDateAPI(movieId, due)
         .then((response) => {
             dispatch({type: SCHEDULE_GET_SUCCESS, payload: response});
         }).catch((error) => {

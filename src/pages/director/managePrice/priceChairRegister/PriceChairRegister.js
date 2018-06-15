@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import "./PriceChairRegister.css";
 import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
+import {serverUrl} from "../../../../reducers/urlUtil";
 class PriceChairRegister extends Component {
     emptyInputSetting = {
         nameInput: '',
@@ -39,7 +40,7 @@ class PriceChairRegister extends Component {
             return false;
         }
         const json = {name: this.state.nameInput, price: this.state.priceInput};
-        axios.post('http://localhost:5000/api/seatType', json).then((response) => {
+        axios.post(`${serverUrl}/api/seatType`, json).then((response) => {
             console.log(response);
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
             alert('좌석 종류 등록에 성공하였습니다.');

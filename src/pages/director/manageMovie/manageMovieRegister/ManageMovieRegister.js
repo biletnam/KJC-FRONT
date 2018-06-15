@@ -10,6 +10,7 @@ import SearchPeople from "./searchPeople/SearchPeople";
 import SelectedPeople from "./selectedPeople/SelectedPeople";
 import ManageSelectGenere from "./selectGenre/ManageSelectGenre";
 import Swal from 'sweetalert2';
+import {serverUrl} from "../../../../reducers/urlUtil";
 class ManageMovieRegister extends Component {
     fileInput;
     initialInput = {
@@ -69,7 +70,7 @@ class ManageMovieRegister extends Component {
                 formData.append('genre[]', g.name);
             });
         }
-        axios.post('http://localhost:5000/api/movies', formData, {header: {
+        axios.post(`${serverUrl}/api/movies`, formData, {header: {
             'Content-Type': 'multipart/form-data'
         }}).then((response) => {
             this.fileInput.value = '';

@@ -15,7 +15,7 @@ import ReserveSeatShow from "./reserveSeatShow/ReserveSeatShow";
 
 class ReserveMovieDetail extends Component {
     schedule = [];
-    state = {selectedChair: [], schedule: [], selectedSchedule: null, branchId: -1, step: 1, date: new Date(), calendarShow: false}
+    state = {selectedChair: [], schedule: [], selectedSchedule: null, branchId: -1, step: 1, date: new Date(), calendarShow: false, payTicketId: -1}
     onChairClick = (chair) => {
         const selectedChair = [...this.state.selectedChair];
         const index = selectedChair.findIndex((c) => c.SEAT_NAME ===  chair.SEAT_NAME);
@@ -45,9 +45,10 @@ class ReserveMovieDetail extends Component {
         const {TicketActions} = this.props;
 
         TicketActions.postTicket({selectedSchedule: selectedSchedule, selectedChair: selectedChair})
-            .then((data) => console.log(data))
+            .then((data) => {
+                this.setState({step: 2, ticketId: data.ticket});
+            })
             .catch((error)=> console.log(error));
-        //this.setState({step: 2});
     }
     closeModal = () => {
         const { onCloseModal } = this.props;
@@ -98,7 +99,7 @@ class ReserveMovieDetail extends Component {
         const todayString = (today.toISOString().split('T')[0]).replace(/-/g, '');
         const maxDayString = (maxDate.toISOString().split('T')[0]).replace(/-/g, '');
 
-        ScheduleActions.getMovieScheduleBetweenDate(selectedMovie.MOVIE_ID, todayString, maxDayString);
+        ScheduleActions.getMoviePublicScheduleByDueDate(selectedMovie.MOVIE_ID, 7);
     }
     getThatDateSchedule = () => {
         const date = this.state.date;
@@ -269,7 +270,7 @@ class ReserveMovieDetail extends Component {
                     this.state.step === 2 &&
 
                     <div className={'reserve-pay-parent'}>
-                        <ReservePay/>
+                        <ReservePay ticketId  = {this.state.ticketId} closeModal = {this.closeModal}/>
                     </div>
                 }
             </div>

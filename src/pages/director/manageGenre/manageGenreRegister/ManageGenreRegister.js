@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import "./ManageGenreRegister.css";
 import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
+import {serverUrl} from "../../../../reducers/urlUtil";
+
 class ManageGenreRegister extends Component {
     emptyInputSetting = {
         nameInput: '',
@@ -34,7 +36,7 @@ class ManageGenreRegister extends Component {
             return false;
         }
         const json = {name: this.state.nameInput};
-        axios.post('http://localhost:5000/api/genres', json).then((response) => {
+        axios.post(`${serverUrl}/api/genres`, json).then((response) => {
             console.log(response);
             this.setState((state) => ({...this.state, ...this.emptyInputSetting}));
             alert('장르 등록에 성공하였습니다.');

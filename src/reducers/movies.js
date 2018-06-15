@@ -4,13 +4,13 @@ import axios from 'axios';
 import {serverUrl} from "./urlUtil";
 
 function getMoviesAPI() {
-    return axios.get(`http://localhost:5000/api/movies`);
+    return axios.get(`${serverUrl}/api/movies`);
 }
 function getPlayinMovieAPI() {
     return axios.get(serverUrl + '/api/movies/playing');
 }
 function postMovieAPI(body) {
-    return axios.post(`http://localhost:5000/api/movies`, body);
+    return axios.post(`${serverUrl}/api/movies`, body);
 }
 const GET_MOVIE_PENDING = 'GET_MOVIE_PENDING';
 const GET_MOVIE_SUCCESS = 'GET_MOVIE_SUCCESS';

@@ -3,12 +3,14 @@ import {Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import MaskedInput from 'react-text-mask';
 import './Register.css';
 import * as urlUtil from 'reducers/urlUtil';
-import axios from 'axios';
 
 import Swal from 'sweetalert2';
+
+
+import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import GetPostCode from "../common/daumGetPost/GetPostCode";
-import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 import Loader from 'react-loader-spinner';
 const customStyles = {
     content : {
@@ -220,7 +222,7 @@ class Register extends Component {
                                 <MaskedInput
                                     mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', '*', '*', '*', '*', '*', '*', '*']}
                                     className="form-control"
-                                    value = {this.state.identificationNumer}
+                                    value = {this.state.identificationNumber}
                                     onChange = {this.identificationChange}
                                     placeholder="주민등록번호(앞자리)"/>
                               </Col>

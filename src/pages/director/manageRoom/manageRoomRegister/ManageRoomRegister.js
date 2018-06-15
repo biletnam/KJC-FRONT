@@ -98,7 +98,7 @@ class ManageRoomRegister extends Component {
         if(this.validateInput(data)) {
             return false;
         }
-        axios.post('http://localhost:5000/api/cinema', data, { headers: {
+        axios.post(`${serverUrl}/api/cinema`, data, { headers: {
             'Content-Type': 'application/json'
         }}).then((response) => {
             console.log(response);
