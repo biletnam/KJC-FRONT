@@ -16,3 +16,10 @@
     margin-top: 10px;
     padding: 10px;
 }
+.movie-information-body .movie-info-1 {
+    display: flex;
+}
+.movie-information-body .movie-info-1 .movie-info-img {
+    width: 100px;
+    height: 150px;
+}

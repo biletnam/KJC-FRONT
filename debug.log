@@ -1,0 +1,6 @@
+[0614/000008.386:ERROR:process_reader_win.cc(123)] NtOpenThread: {액세스 거부} 프로세스가 개체에 액세스를 요구했지만 액세스 권한이 없습니다. (0xc0000022)
+[0614/000008.386:ERROR:process_reader_win.cc(123)] NtOpenThread: {액세스 거부} 프로세스가 개체에 액세스를 요구했지만 액세스 권한이 없습니다. (0xc0000022)
+[0614/000008.464:ERROR:exception_snapshot_win.cc(88)] thread ID 21752 not found in process
+[0614/000008.464:ERROR:exception_snapshot_win.cc(88)] thread ID 17000 not found in process
+[0614/000008.464:WARNING:crash_report_exception_handler.cc(62)] ProcessSnapshotWin::Initialize failed
+[0614/000008.464:WARNING:crash_report_exception_handler.cc(62)] ProcessSnapshotWin::Initialize failed
