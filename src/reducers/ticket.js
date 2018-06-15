@@ -27,6 +27,7 @@ const getTicketOfAPI = () => {
     const token = sessionStorage.getItem('kjc_token');
     return axios.get(serverUrl + `/api/ticket/of/customer`, {headers: {'x-access-token': token}});
 }
+
 export const getTicket = () => dispatch => {
     dispatch({type: TICKET_GET_PENDING});
     getTicketAPI()
@@ -88,6 +89,24 @@ export const refundTicket = (TCK_ID) => dispatch =>{
     dispatch({type: TICKET_PUT_PENDING});
     return new Promise((resolve, reject) => {
         putRefundTicketAPI(TCK_ID)
+            .then((response) => {
+                dispatch({type: TICKET_PUT_SUCCESS});
+                resolve(response.data);
+            }).catch((error) => {
+            dispatch({type: TICKET_PUT_FAIL});
+            reject('fail');
+        })
+    })
+}
+const ticketingAPI = (TCK_ID) => {
+    const token = sessionStorage.getItem('kjc_token');
+    const ticketObject = {TCK_ID: TCK_ID};
+    return axios.put(serverUrl + '/api/ticket/ticketing', ticketObject, {headers: {'x-access-token': token, 'Content-Type': 'application/json'}})
+}
+export const ticketing = (TCK_ID) => dispatch => {
+    dispatch({type: TICKET_PUT_PENDING});
+    return new Promise((resolve, reject) => {
+        ticketingAPI(TCK_ID)
             .then((response) => {
                 dispatch({type: TICKET_PUT_SUCCESS});
                 resolve(response.data);

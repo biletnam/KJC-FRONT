@@ -50,6 +50,24 @@ class ReserveInfo extends Component {
             })
         console.log(ticketData);
     }
+    ticketing = (ticketData) => {
+        const {TicketActions} = this.props;
+        const TCK_ID = ticketData.TCK_ID;
+        if(ticketData.TCK_STATUS !== 'P') {
+            alert('결제 완료 상태일 때만 발권이 가능합니다.');
+            return;
+        }
+        TicketActions.ticketing(TCK_ID)
+            .then((data) =>
+            {
+                TicketActions.getTicketOf();
+                alert('성공');
+            })
+            .catch((error) => {
+                console.log(error);
+                alert('실패하였습니다.');
+            });
+    }
     render() {
         const {userInformation} = this.props;
         console.log(userInformation);
@@ -104,6 +122,17 @@ class ReserveInfo extends Component {
                                               {object.value === 'T' && '발권 완료'}
                                           </div>
                                       )
+                                  },
+                                  {
+                                      Header:'발권',
+                                      Cell: (object) => {
+                                          const isTicketAble = object.original && object.original.TCK_STATUS === 'P';
+                                          return ( isTicketAble &&
+                                              <div>
+                                              <button onClick={() => this.ticketing(object.original)}>발권</button>
+                                          </div>
+                                          )
+                                      }
                                   },
                                   {
                                       Header: '환불',

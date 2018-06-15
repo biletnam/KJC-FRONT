@@ -126,6 +126,10 @@ class ReservePay extends Component {
                 return;
             }
         }
+        if(loginInfo.IS_USER === 'Y' && this.state.payInfo.payAmount < Number(data.POINT_PAY)) {
+            alert('포인트를 결제 가격보다 더 많이 투자할 순 없습니다.');
+            return false;
+        }
         if (!this.validateData(data)) {
             alert('결제 정보를 확인하세요!');
             return false;
@@ -224,7 +228,7 @@ class ReservePay extends Component {
                                 }
                             </div>
                         </div>
-                         {loginInfo.IS_USER && loginInfo.IS_USER === 'Y' &&
+                         {loginInfo.IS_USER && loginInfo.IS_USER === 'Y' && !this.state.pointAllUse &&
                              <div className={'reserve-point-div'}>
                                 <div className={'reserve-point-title'}>포인트 사용 <input type={'checkbox'}
                                                                                      defaultChecked={this.state.usePoint}
