@@ -51,6 +51,17 @@ class ManageMovieScheduleList extends Component {
         ScheduleActions.deleteSchedule(data.SCHED_ID)
             .then((data) => {
                 alert('삭제 성공!');
+                ScheduleActions.getAllSchedule();
+            }).catch((error) => {
+            alert('삭제 실패!');
+        })
+    }
+    calculateSellRateClick = (data) => {
+        const {ScheduleActions} = this.props;
+        ScheduleActions.scheduleSellRateCalculate(data.SCHED_ID)
+            .then((data) => {
+                alert('계산 성공!');
+                ScheduleActions.getAllSchedule();
             }).catch((error) => {
             alert('삭제 실패!');
         })
@@ -110,6 +121,18 @@ class ManageMovieScheduleList extends Component {
                             Cell: (row) => (
                                 <div>
                                     <button onClick={() => this.deleteScheduleClick(row.original)}>삭제</button>
+                                </div>
+                            )
+                        },
+                        {
+                            Header: '판매율',
+                            accessor: 'SELL_RATE',
+                            Cell: (row) => (<div>{row.value ? row.value + '%' : '0%'}</div>)
+                        }, {
+                            Header: '',
+                            Cell: (row) => (
+                                <div>
+                                    <button onClick={() => this.calculateSellRateClick(row.original)}>판매율 계산</button>
                                 </div>
                             )
                         }

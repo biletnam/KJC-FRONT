@@ -29,6 +29,10 @@ const deleteScheduleAPI = (scheduleId) => {
 const getMoviePublicScheduleByDueDateAPI = (movieId, due) => {
     return axios.get(serverUrl + `/api/schedule/movie/${movieId}/due/${due}`);
 }
+const putSellRateAPI = (scheduleId) => {
+    return axios.put(serverUrl + `/api/schedule/sellRate/${scheduleId}`);
+
+}
 export const getMovieScheduleBetweenDate = (movieId, date1, date2) => dispatch => {
     dispatch({type: SCHEDULE_GET_PENDING});
     getMovieScheduleBetweenDateAPI(movieId, date1, date2)
@@ -60,6 +64,19 @@ export const scheduleToPublic = (scheduleId) => dispatch => {
     dispatch({type: SCHEDULE_PUT_PENDING});
     return new Promise((resolve, reject) => {
         updateScheduleToPublic(scheduleId)
+            .then((response) => {
+                dispatch({type: SCHEDULE_PUT_SUCCESS});
+                resolve('success');
+            }).catch((error) => {
+            dispatch({type: SCHEDULE_GET_FAIL});
+            reject('error');
+        })
+    })
+}
+export const scheduleSellRateCalculate = (scheduleId) => dispatch => {
+    dispatch({type: SCHEDULE_PUT_PENDING});
+    return new Promise((resolve, reject) => {
+        putSellRateAPI(scheduleId)
             .then((response) => {
                 dispatch({type: SCHEDULE_PUT_SUCCESS});
                 resolve('success');
