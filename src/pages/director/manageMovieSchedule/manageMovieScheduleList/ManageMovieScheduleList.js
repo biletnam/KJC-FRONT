@@ -128,6 +128,12 @@ class ManageMovieScheduleList extends Component {
                             Header: '판매율',
                             accessor: 'SELL_RATE',
                             Cell: (row) => (<div>{row.value ? row.value + '%' : '0%'}</div>)
+                        },
+                        {
+                            Header: '수입',
+                            accessor: 'TOT_REV',
+                            Cell: (row) => (<div>{row.value ? row.value + '원' : '0원'}</div>)
+
                         }, {
                             Header: '',
                             Cell: (row) => (
